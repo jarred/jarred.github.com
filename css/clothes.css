@@ -15,22 +15,22 @@ header {
   left: 20px;
   top: 20px;
   font-size: 12px;
-  color: #BBB;
+  color: #CCC;
   text-align: left;
   right: 20px; }
 
 a#me {
   position: absolute;
-  right: 4px;
-  top: 4px; }
+  right: 50px;
+  top: 50px; }
   a#me img {
     width: 400px; }
 
 a {
-  text-decoration: none;
-  color: #da3737; }
+  text-decoration: underline;
+  color: #000; }
   a:hover {
-    text-decoration: underline; }
+    text-decoration: none; }
 
 div#speel {
   position: absolute;
