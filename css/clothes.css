@@ -1,6 +1,8 @@
 body {
   margin: 0px;
-  font-family: 'Helvetica Neue', Sans-Serif; }
+  font-family: 'Helvetica Neue', Sans-Serif;
+  font-size: 12px;
+  line-height: 17px; }
 
 footer {
   position: absolute;
@@ -17,7 +19,8 @@ header {
   font-size: 12px;
   color: #CCC;
   text-align: left;
-  right: 20px; }
+  right: 20px;
+  letter-spacing: 0px; }
 
 a#me {
   position: absolute;
@@ -27,20 +30,18 @@ a#me {
     width: 400px; }
 
 a {
-  text-decoration: underline;
+  text-decoration: none;
+  border-bottom: 1px solid #CCC;
   color: #000; }
   a:hover {
-    text-decoration: none; }
+    border-bottom: 1px solid #000; }
 
 div#speel {
   position: absolute;
   left: 20px;
   top: 50px;
-  width: 500px; }
+  width: 300px; }
   div#speel p {
-    font-size: 26px;
-    letter-spacing: 0px;
-    font-weight: 500;
     margin-top: 0px; }
   div#speel ul.links {
     font-size: 12px;
