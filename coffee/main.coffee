@@ -18,6 +18,7 @@ jb.Main =
           "js/view.twitter"
           "js/view.tumblr"
           "js/view.github"
+          "js/view.flickr"
           "js/view.dribbble"
           "js/view.activity-stream"
         ], () =>

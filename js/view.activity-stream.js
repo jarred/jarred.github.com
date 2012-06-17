@@ -27,6 +27,10 @@
         type: 'instapaper',
         url: 'http://xml2json.heroku.com?url=http://www.instapaper.com/archive/rss/242/TS2f4M11DxVeYjmNcnZSG6XDk&callback=?',
         favicon: 'http://g.etfv.co/http://instapaper.com'
+      }, {
+        type: 'flickr',
+        url: 'http://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=85497dbe3823d30b7db8ce79b3bc9ab3&user_id=72904000%40N00&per_page=20&page=0&format=json&jsoncallback=?',
+        favicon: 'http://l.yimg.com/g/favicon.ico'
       }
     ],
     initialize: function(o) {
@@ -81,14 +85,18 @@
           break;
         case 'instapaper':
           this.addInstapaper(data);
+          break;
+        case 'flickr':
+          this.addFlickr(data);
       }
     },
     whatNext: function() {
+      this.render();
       if (this.servicesLoaded < this.services.length - 1) {
         this.loadService(this.loadIndex + 1);
         this.servicesLoaded++;
       } else {
-        this.render();
+        this.$('.status').addClass('hide');
       }
     },
     addTwitter: function(data) {
@@ -142,7 +150,6 @@
       $data = $($.parseXML(data));
       _.each($data.find('item'), function(item) {
         var $item, model;
-        console.log(item);
         $item = $(item);
         model = new Backbone.Model({
           date: moment($item.find('pubDate').text()),
@@ -158,9 +165,24 @@
     addInstapaper: function(data) {
       this.$el.trigger('instapaper-ready');
     },
+    addFlickr: function(data) {
+      var _this = this;
+      console.log(data);
+      _.each(data.photos.photo, function(photo) {
+        var model;
+        model = new Backbone.Model({
+          date: moment(new Date()),
+          type: 'flickr',
+          data: photo,
+          favicon: _this.service.favicon
+        });
+        _this.data.add(model);
+      });
+      this.$el.trigger('flickr-ready');
+    },
     render: function() {
       var _this = this;
-      this.$('.status').addClass('hide');
+      this.$('.items').html('');
       this.data.sort();
       _.each(this.data.models, function(model, index) {
         var view;
@@ -172,7 +194,8 @@
           model: model,
           className: "item " + (model.get('type'))
         });
-        console.log(index % 2);
+        _this.$('.items').append(view.el);
+        return;
         if (index % 2 === 0) {
           _this.$('.column.left').append(view.el);
         } else {

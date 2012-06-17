@@ -157,3 +157,7 @@ section#activity > .column.right {
   margin-bottom: 20px;
   width: 400px;
 }
+.item .favicon img {
+  width: 16px;
+  height: 16px;
+}

@@ -22,6 +22,10 @@ jb.Views.ActivityStream = Backbone.View.extend
     type: 'instapaper'
     url: 'http://xml2json.heroku.com?url=http://www.instapaper.com/archive/rss/242/TS2f4M11DxVeYjmNcnZSG6XDk&callback=?'
     favicon: 'http://g.etfv.co/http://instapaper.com'
+  ,
+    type: 'flickr'
+    url: 'http://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=85497dbe3823d30b7db8ce79b3bc9ab3&user_id=72904000%40N00&per_page=20&page=0&format=json&jsoncallback=?'
+    favicon: 'http://l.yimg.com/g/favicon.ico'
   ]
   
   initialize: (@o) ->
@@ -67,14 +71,18 @@ jb.Views.ActivityStream = Backbone.View.extend
       when 'github' then @addGithub data
       when 'dribbble' then @addDribbble data
       when 'instapaper' then @addInstapaper data
+      when 'flickr' then @addFlickr data
     return
 
   whatNext: ->
+    @render()
+
     if @servicesLoaded < @services.length - 1
       @loadService @loadIndex + 1
       @servicesLoaded++
     else
-      @render()
+      @$('.status').addClass 'hide'
+      # @render()
     return
 
   addTwitter: (data) ->
@@ -118,7 +126,7 @@ jb.Views.ActivityStream = Backbone.View.extend
   addDribbble: (data) ->
     $data = $($.parseXML data)
     _.each $data.find('item'), (item) =>
-      console.log item
+      # console.log item
       $item = $ item
       model = new Backbone.Model
         date: moment($item.find('pubDate').text())
@@ -135,9 +143,22 @@ jb.Views.ActivityStream = Backbone.View.extend
     @$el.trigger 'instapaper-ready'
     return
 
+  addFlickr: (data) ->
+    console.log data
+    _.each data.photos.photo, (photo) =>
+      model = new Backbone.Model
+        date: moment(new Date())
+        type: 'flickr'
+        data: photo
+        favicon: @service.favicon
+      @data.add model
+      return
+    @$el.trigger 'flickr-ready'
+    return
+
   render: ->
-    # @$el.html ""
-    @$('.status').addClass 'hide'
+    @$('.items').html ''
+    
     @data.sort()
     # Sort collection...
     _.each @data.models, (model, index) =>
@@ -148,8 +169,9 @@ jb.Views.ActivityStream = Backbone.View.extend
       view = new jb.Views[model.get('type')]
         model: model
         className: "item #{model.get('type')}"
-      # @$el.append view.el
-      console.log index%2
+      @$('.items').append view.el
+      return
+      # console.log index%2
       if index%2 == 0
         @$('.column.left').append view.el
       else
