@@ -109,8 +109,12 @@ html {
 body {
   margin: 40px;
 }
+.hide {
+  display: none;
+}
 section#activity {
   margin-top: 30px;
+  position: relative;
 }
 section#activity > .status > i.icon {
   display: inline-block;
@@ -136,6 +140,20 @@ section#activity > .status > i.icon > .favicons > .favicon {
   background-position: center center;
   background-size: contain;
 }
+section#activity > .column {
+  position: absolute;
+  top: 0px;
+}
+section#activity > .column.left {
+  text-align: right;
+}
+section#activity > .column.left > .item {
+  margin-right: 50px;
+}
+section#activity > .column.right {
+  left: 50%;
+}
 .item {
   margin-bottom: 20px;
+  width: 400px;
 }

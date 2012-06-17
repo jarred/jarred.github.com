@@ -136,10 +136,11 @@ jb.Views.ActivityStream = Backbone.View.extend
     return
 
   render: ->
-    @$el.html ""
+    # @$el.html ""
+    @$('.status').addClass 'hide'
     @data.sort()
     # Sort collection...
-    _.each @data.models, (model) =>
+    _.each @data.models, (model, index) =>
       # @$el.append jb.Templates[model.get('type')] model.toJSON()
       if jb.Views[model.get('type')] == undefined
         console.log "new view for #{model.get('type')}"
@@ -147,6 +148,11 @@ jb.Views.ActivityStream = Backbone.View.extend
       view = new jb.Views[model.get('type')]
         model: model
         className: "item #{model.get('type')}"
-      @$el.append view.el
+      # @$el.append view.el
+      console.log index%2
+      if index%2 == 0
+        @$('.column.left').append view.el
+      else
+        @$('.column.right').append view.el
       return
     return

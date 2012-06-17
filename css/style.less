@@ -14,8 +14,13 @@ body{
   margin: 40px;
 }
 
+.hide{
+  display: none;
+}
+
 section#activity{
   margin-top: 30px;
+  position: relative;
   > .status{
     > i.icon{
       display: inline-block;
@@ -42,9 +47,23 @@ section#activity{
       }
     }
   }
+  > .column{
+    position: absolute;
+    top: 0px;
+    &.left{
+      text-align: right;
+      > .item{
+        margin-right: 50px;
+      }
+    }
+    &.right{
+      left: 50%;
+    }
+  }
 }
 
 .item{
   margin-bottom: 20px;
+  width: 400px;
 }
 

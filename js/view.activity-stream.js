@@ -160,9 +160,9 @@
     },
     render: function() {
       var _this = this;
-      this.$el.html("");
+      this.$('.status').addClass('hide');
       this.data.sort();
-      _.each(this.data.models, function(model) {
+      _.each(this.data.models, function(model, index) {
         var view;
         if (jb.Views[model.get('type')] === void 0) {
           console.log("new view for " + (model.get('type')));
@@ -172,7 +172,12 @@
           model: model,
           className: "item " + (model.get('type'))
         });
-        _this.$el.append(view.el);
+        console.log(index % 2);
+        if (index % 2 === 0) {
+          _this.$('.column.left').append(view.el);
+        } else {
+          _this.$('.column.right').append(view.el);
+        }
       });
     }
   });
