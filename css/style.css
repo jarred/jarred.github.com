@@ -109,6 +109,33 @@ html {
 body {
   margin: 40px;
 }
+section#activity {
+  margin-top: 30px;
+}
+section#activity > .status > i.icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  overflow: hidden;
+  right: 4px;
+  top: 6px;
+}
+section#activity > .status > i.icon > .favicons {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+section#activity > .status > i.icon > .favicons > .favicon {
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin-bottom: 4px;
+  margin-left: 2px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}
 .item {
   margin-bottom: 20px;
 }
