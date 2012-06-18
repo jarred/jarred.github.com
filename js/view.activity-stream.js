@@ -35,6 +35,10 @@
         type: 'svpply',
         url: 'https://api.svpply.com/v1/users/jarred/wants/products.json?limit=20&callback=?',
         favicon: 'http://g.etfv.co/http://svpply.com'
+      }, {
+        type: 'pinboard',
+        url: 'http://xml2json.heroku.com?url=http://feeds.pinboard.in/rss/secret:f06efe78d64f6c8a98b3/u:jarred/&callback=?',
+        favicon: 'http://g.etfv.co/http://pinboard.in'
       }
     ],
     initialize: function(o) {
@@ -95,6 +99,9 @@
           break;
         case 'svpply':
           this.addSvpply(data);
+          break;
+        case 'pinboard':
+          this.addPinboard(data);
       }
     },
     whatNext: function() {
@@ -221,6 +228,28 @@
         _this.data.add(model);
       });
       this.$el.trigger('svpply-ready');
+    },
+    addPinboard: function(data) {
+      var $data,
+        _this = this;
+      $data = $($.parseXML(data));
+      console.log(data['rdf:RDF'].item);
+      _.each(data['rdf:RDF'].item, function(item) {
+        var model;
+        model = new Backbone.Model({
+          date: moment(item['dc:date'], 'YYYY-MM-DDTHH:mm:ss'),
+          type: 'pinboard',
+          favicon: _this.service.favicon,
+          data: {
+            title: item.title,
+            link: item.link
+          }
+        });
+        if (model.get('data').title.indexOf('[priv]') === -1) {
+          _this.data.add(model);
+        }
+      });
+      this.$el.trigger('pinboard-ready');
     },
     render: function() {
       var _this = this;

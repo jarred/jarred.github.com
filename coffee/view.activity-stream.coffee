@@ -30,6 +30,10 @@ jb.Views.ActivityStream = Backbone.View.extend
     type: 'svpply'
     url: 'https://api.svpply.com/v1/users/jarred/wants/products.json?limit=20&callback=?'
     favicon: 'http://g.etfv.co/http://svpply.com'
+  ,
+    type: 'pinboard'
+    url: 'http://xml2json.heroku.com?url=http://feeds.pinboard.in/rss/secret:f06efe78d64f6c8a98b3/u:jarred/&callback=?'
+    favicon: 'http://g.etfv.co/http://pinboard.in'
   ]
   
   initialize: (@o) ->
@@ -76,6 +80,7 @@ jb.Views.ActivityStream = Backbone.View.extend
       when 'instapaper' then @addInstapaper data
       when 'flickr' then @addFlickr data
       when 'svpply' then @addSvpply data
+      when 'pinboard' then @addPinboard data
     return
 
   whatNext: ->
@@ -187,11 +192,25 @@ jb.Views.ActivityStream = Backbone.View.extend
     @$el.trigger 'svpply-ready'
     return
 
+  addPinboard: (data) ->
+    $data = $($.parseXML data)
+    console.log data['rdf:RDF'].item
+    _.each data['rdf:RDF'].item, (item) =>
+      model = new Backbone.Model
+        date: moment(item['dc:date'], 'YYYY-MM-DDTHH:mm:ss')
+        type: 'pinboard'
+        favicon: @service.favicon
+        data:
+          title: item.title
+          link: item.link
+      if model.get('data').title.indexOf('[priv]') == -1
+        @data.add model
+      return
+    @$el.trigger 'pinboard-ready'
+    return
+
   render: ->
-
-
     @$('.items').html ''
-    
     @data.sort()
     # @data.models = _.shuffle @data.models
     # Sort collection...

@@ -320,3 +320,7 @@ section#activity > .vertical-border {
 .item.svpply > .connection {
   border-color: #000;
 }
+.item.pinboard > .favicon,
+.item.pinboard > .connection {
+  border-color: #c02026;
+}
