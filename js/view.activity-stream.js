@@ -29,8 +29,12 @@
         favicon: 'http://g.etfv.co/http://instapaper.com'
       }, {
         type: 'flickr',
-        url: 'http://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=85497dbe3823d30b7db8ce79b3bc9ab3&user_id=72904000%40N00&per_page=20&page=0&format=json&jsoncallback=?',
+        url: 'http://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=85497dbe3823d30b7db8ce79b3bc9ab3&user_id=72904000%40N00&per_page=20&page=0&format=json&extras=date_taken&jsoncallback=?',
         favicon: 'http://l.yimg.com/g/favicon.ico'
+      }, {
+        type: 'svpply',
+        url: 'https://api.svpply.com/v1/users/jarred/wants/products.json?limit=20&callback=?',
+        favicon: 'http://g.etfv.co/http://svpply.com'
       }
     ],
     initialize: function(o) {
@@ -56,7 +60,7 @@
       var _this = this;
       this.$('.status .text').text("loading " + this.services[n].type + "...");
       this.$('.status i.icon .favicons').animate({
-        top: 2 - (20 * n)
+        top: 2 - (20 * (n + 1))
       }, 200);
       $.ajax({
         url: this.services[n].url,
@@ -88,6 +92,9 @@
           break;
         case 'flickr':
           this.addFlickr(data);
+          break;
+        case 'svpply':
+          this.addSvpply(data);
       }
     },
     whatNext: function() {
@@ -167,11 +174,10 @@
     },
     addFlickr: function(data) {
       var _this = this;
-      console.log(data);
       _.each(data.photos.photo, function(photo) {
         var model;
         model = new Backbone.Model({
-          date: moment(new Date()),
+          date: moment(photo.datetaken, 'YYYY-MM-DD HH:mm:ss'),
           type: 'flickr',
           data: photo,
           favicon: _this.service.favicon
@@ -180,12 +186,27 @@
       });
       this.$el.trigger('flickr-ready');
     },
+    addSvpply: function(data) {
+      var _this = this;
+      console.log(data);
+      _.each(data.response.products, function(product) {
+        var model;
+        model = new Backbone.Model({
+          date: moment(product.date_created, 'YYYY-MM-DD HH:mm:ss'),
+          type: 'svpply',
+          data: product,
+          favicon: _this.service.favicon
+        });
+        _this.data.add(model);
+      });
+      this.$el.trigger('svpply-ready');
+    },
     render: function() {
       var _this = this;
       this.$('.items').html('');
       this.data.sort();
       _.each(this.data.models, function(model, index) {
-        var view;
+        var $el, view;
         if (jb.Views[model.get('type')] === void 0) {
           console.log("new view for " + (model.get('type')));
           return;
@@ -194,12 +215,12 @@
           model: model,
           className: "item " + (model.get('type'))
         });
+        $el = $(view.el);
         _this.$('.items').append(view.el);
-        return;
         if (index % 2 === 0) {
-          _this.$('.column.left').append(view.el);
+          $el.addClass('left');
         } else {
-          _this.$('.column.right').append(view.el);
+          $el.addClass('right');
         }
       });
     }

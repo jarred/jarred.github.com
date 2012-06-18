@@ -1,6 +1,6 @@
 jb = window.JB ||= {}
 jb.Views ||= {}
-jb.Views.twitter = Backbone.View.extend
+jb.Views.svpply = Backbone.View.extend
   
   initialize: (@options) ->
     _.bindAll @
@@ -14,5 +14,7 @@ jb.Views.twitter = Backbone.View.extend
     return
 
   template: _.template """
-    <div class="content"><p class="tweet"><%= window.twttr.txt.autoLink(data.text) %></p></div>
+    <div class="content">
+      <a href="<%= data.page_url %>"><img src="<%= data.image %>" /></a>
+    </div>
   """

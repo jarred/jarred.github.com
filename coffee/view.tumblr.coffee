@@ -15,8 +15,9 @@ jb.Views.tumblr = Backbone.View.extend
     return
 
   template: _.template """
-    tumblr post, <%= data.type %>
+  <div class="content">
     <% if(data.type === 'photo'){ %>
       <div class="image"><img src="<%= data.photos[0].alt_sizes[2].url %>" /></div>
     <% } %>
+  </div>
   """

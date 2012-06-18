@@ -24,8 +24,12 @@ jb.Views.ActivityStream = Backbone.View.extend
     favicon: 'http://g.etfv.co/http://instapaper.com'
   ,
     type: 'flickr'
-    url: 'http://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=85497dbe3823d30b7db8ce79b3bc9ab3&user_id=72904000%40N00&per_page=20&page=0&format=json&jsoncallback=?'
+    url: 'http://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=85497dbe3823d30b7db8ce79b3bc9ab3&user_id=72904000%40N00&per_page=20&page=0&format=json&extras=date_taken&jsoncallback=?'
     favicon: 'http://l.yimg.com/g/favicon.ico'
+  ,
+    type: 'svpply'
+    url: 'https://api.svpply.com/v1/users/jarred/wants/products.json?limit=20&callback=?'
+    favicon: 'http://g.etfv.co/http://svpply.com'
   ]
   
   initialize: (@o) ->
@@ -50,7 +54,7 @@ jb.Views.ActivityStream = Backbone.View.extend
   loadService: (n) ->
     @$('.status .text').text "loading #{@services[n].type}..."
     @$('.status i.icon .favicons').animate
-      top: 2 - (20 * n)
+      top: 2 - (20 * (n + 1))
     , 200
     $.ajax
       url: @services[n].url
@@ -72,6 +76,7 @@ jb.Views.ActivityStream = Backbone.View.extend
       when 'dribbble' then @addDribbble data
       when 'instapaper' then @addInstapaper data
       when 'flickr' then @addFlickr data
+      when 'svpply' then @addSvpply data
     return
 
   whatNext: ->
@@ -144,16 +149,29 @@ jb.Views.ActivityStream = Backbone.View.extend
     return
 
   addFlickr: (data) ->
-    console.log data
     _.each data.photos.photo, (photo) =>
+      # console.log photo
       model = new Backbone.Model
-        date: moment(new Date())
+        date: moment(photo.datetaken, 'YYYY-MM-DD HH:mm:ss')
         type: 'flickr'
         data: photo
         favicon: @service.favicon
       @data.add model
       return
     @$el.trigger 'flickr-ready'
+    return
+
+  addSvpply: (data) ->
+    console.log data
+    _.each data.response.products, (product) =>
+      model = new Backbone.Model
+        date: moment(product.date_created, 'YYYY-MM-DD HH:mm:ss')
+        type: 'svpply'
+        data: product
+        favicon: @service.favicon
+      @data.add model
+      return
+    @$el.trigger 'svpply-ready'
     return
 
   render: ->
@@ -169,12 +187,11 @@ jb.Views.ActivityStream = Backbone.View.extend
       view = new jb.Views[model.get('type')]
         model: model
         className: "item #{model.get('type')}"
+      $el = $(view.el)
       @$('.items').append view.el
-      return
-      # console.log index%2
       if index%2 == 0
-        @$('.column.left').append view.el
+        $el.addClass 'left'
       else
-        @$('.column.right').append view.el
+        $el.addClass 'right'
       return
     return

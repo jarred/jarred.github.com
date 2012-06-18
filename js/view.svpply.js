@@ -5,7 +5,7 @@
 
   jb.Views || (jb.Views = {});
 
-  jb.Views.tumblr = Backbone.View.extend({
+  jb.Views.svpply = Backbone.View.extend({
     initialize: function(options) {
       this.options = options;
       _.bindAll(this);
@@ -16,7 +16,7 @@
       this.$el.html(this.template(this.model.toJSON()));
       this.$el.append(jb.Templates.favicon(this.model.toJSON()));
     },
-    template: _.template("<div class=\"content\">\n  <% if(data.type === 'photo'){ %>\n    <div class=\"image\"><img src=\"<%= data.photos[0].alt_sizes[2].url %>\" /></div>\n  <% } %>\n</div>")
+    template: _.template("<div class=\"content\">\n  <a href=\"<%= data.page_url %>\"><img src=\"<%= data.image %>\" /></a>\n</div>")
   });
 
 }).call(this);

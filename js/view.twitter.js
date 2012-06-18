@@ -16,7 +16,7 @@
       this.$el.html(this.template(this.model.toJSON()));
       this.$el.append(jb.Templates.favicon(this.model.toJSON()));
     },
-    template: _.template("<div class=\"text\"><%= window.twttr.txt.autoLink(data.text) %></div>")
+    template: _.template("<div class=\"content\"><p class=\"tweet\"><%= window.twttr.txt.autoLink(data.text) %></p></div>")
   });
 
 }).call(this);

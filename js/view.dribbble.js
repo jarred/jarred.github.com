@@ -16,7 +16,7 @@
       this.$el.html(this.template(this.model.toJSON()));
       this.$el.append(jb.Templates.favicon(this.model.toJSON()));
     },
-    template: _.template("<%= image %>")
+    template: _.template("<div class=\"content\">\n  <%= image %>\n</div>")
   });
 
 }).call(this);

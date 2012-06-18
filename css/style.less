@@ -22,6 +22,17 @@ section#activity{
   margin-top: 30px;
   position: relative;
   > .status{
+    position: fixed;
+    bottom: 100px;
+    width: 200px;
+    left: 50%;
+    background-color: #FFF;
+    border: 1px solid #CCC;
+    margin-left: -100px;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    z-index: 100;
     > i.icon{
       display: inline-block;
       width: 20px;
@@ -43,32 +54,112 @@ section#activity{
           background-repeat: no-repeat;
           background-position: center center;
           background-size: contain;
+          &.loading-anim{
+            background-image: url('../images/loading.gif');
+          }
         }
       }
     }
   }
-  > .column{
+  > .vertical-border{
     position: absolute;
     top: 0px;
-    &.left{
-      text-align: right;
-      > .item{
-        margin-right: 50px;
-      }
-    }
-    &.right{
-      left: 50%;
-    }
+    bottom: 0px;
+    width: 1px;
+    border-left: 1px dotted #CCC;
+    left: 50%;
+    z-index: 1;
   }
 }
 
 .item{
-  margin-bottom: 20px;
-  width: 400px;
-  .favicon{
+  margin-bottom: 40px;
+  position: relative;
+  overflow: visible;
+  z-index: 2;
+  > .connection{
+    width: 100px;
+    height: 1px;
+    border-bottom: 1px dotted #AAA;
+    position: absolute;
+    left: 50%;
+    z-index: 1;
+    top: 50%;
+  }
+  > .favicon{
+    width: 30px;
+    height: 30px;
+    border: 2px solid #ccc;
+    border-radius: 16px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -16px;
+    margin-left: -16px;
+    background-color: #FFF;
+    z-index: 10;
     img{
+      margin: 7px;
       width: 16px;
       height: 16px;
+    }
+  }
+  > .content{
+    width: 360px;
+    position: relative;
+    left: 50%;
+  }
+  &.left{
+    > .connection{
+      margin-left: -100px;
+    }
+    > .content{
+      text-align: right;
+      margin-left: -480px;
+    }
+    &.twitter{
+      p.tweet{
+        text-align: right;
+        margin-left: 120px;
+      }
+    }
+  }
+  &.right{
+    > .content{
+      margin-left: 120px;
+    }
+  }
+  &.twitter{
+    > .favicon,
+    > .connection{
+      border-color: #2199cd;
+    }
+    p.tweet{
+      font: 400 16px/20px 'Times New Roman', Serif;
+      width: 240px;
+      a{
+        text-decoration: none;
+        font: 600 15px/20px 'Helvetica Neue', Sans-Serif;
+        color: #2199cd;
+      }
+    }
+  }
+  &.tumblr{
+    > .favicon,
+    > .connection{
+      border-color: #486682;
+    }
+  }
+  &.flickr{
+    > .favicon,
+    > .connection{
+      border-color: #3665b0;
+    }
+  }
+  &.dribbble{
+    > .favicon,
+    > .connection{
+      border-color: #f175a5;
     }
   }
 }
