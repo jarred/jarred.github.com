@@ -1,6 +1,6 @@
 jb = window.JB ||= {}
 jb.Views ||= {}
-jb.Views.svpply = Backbone.View.extend
+jb.Views.instapaper = Backbone.View.extend
   
   initialize: (@options) ->
     _.bindAll @
@@ -9,13 +9,14 @@ jb.Views.svpply = Backbone.View.extend
     return
 
   render: ->
+    # console.log @model.get('data').type
+    # console.log @model.toJSON()
     @$el.html @template @model.toJSON()
     @$el.append jb.Templates.favicon @model.toJSON()
     return
 
   template: _.template """
-    <div class="content">
-      <label>wants</label>
-      <a href="<%= data.page_url %>"><img src="<%= data.image %>" /></a>
-    </div>
+  <div class="content">
+    <h2><label>read</label><a href="<%= data.link %>"><%= data.title %></a></h2>
+  </div>
   """

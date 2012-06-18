@@ -5,7 +5,7 @@
 
   jb.Views || (jb.Views = {});
 
-  jb.Views.svpply = Backbone.View.extend({
+  jb.Views.instapaper = Backbone.View.extend({
     initialize: function(options) {
       this.options = options;
       _.bindAll(this);
@@ -16,7 +16,7 @@
       this.$el.html(this.template(this.model.toJSON()));
       this.$el.append(jb.Templates.favicon(this.model.toJSON()));
     },
-    template: _.template("<div class=\"content\">\n  <label>wants</label>\n  <a href=\"<%= data.page_url %>\"><img src=\"<%= data.image %>\" /></a>\n</div>")
+    template: _.template("<div class=\"content\">\n  <h2><label>read</label><a href=\"<%= data.link %>\"><%= data.title %></a></h2>\n</div>")
   });
 
 }).call(this);
