@@ -16,7 +16,7 @@
       this.$el.html(this.template(this.model.toJSON()));
       this.$el.append(jb.Templates.favicon(this.model.toJSON()));
     },
-    template: _.template("<div class=\"content\">\n  <% if(data.type === 'photo'){ %>\n    <div class=\"image\"><img src=\"<%= data.photos[0].alt_sizes[2].url %>\" /></div>\n  <% } %>\n</div>")
+    template: _.template("<div class=\"content\">\n  <% if(data.type === 'photo'){ %>\n    <div class=\"image\"><img src=\"<%= data.photos[0].alt_sizes[2].url %>\" /></div>\n  <% } %>\n  <% if(data.type === 'quote'){ %>\n    <blockquote><%= data.text %></blockquote>\n    <% if(data.source){ %>\n      <p class=\"source\">&mdash; <%= data.source %></p>\n    <% } %>\n  <% } %>\n</div>")
   });
 
 }).call(this);

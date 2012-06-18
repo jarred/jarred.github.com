@@ -7,21 +7,21 @@ jb.Views.ActivityStream = Backbone.View.extend
     url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=jarred&callback=?'
     favicon: 'http://g.etfv.co/http://twitter.com'
   ,
-    type: 'tumblr'
-    url: 'http://api.tumblr.com/v2/blog/jarredbishop.tumblr.com/posts?api_key=YgpsEXCrpCtKL9U7aNBzWeDp0sSbZw1AeZQSt5QgsXRLdb5o24&jsonp=?'
-    favicon: 'http://g.etfv.co/http://tumblr.com'
+    type: 'instapaper'
+    url: 'http://xml2json.heroku.com?url=http://www.instapaper.com/archive/rss/242/TS2f4M11DxVeYjmNcnZSG6XDk&callback=?'
+    favicon: 'http://g.etfv.co/http://instapaper.com'
   ,
     type: 'github'
     url: 'http://xml2json.heroku.com?url=https://github.com/jarred.atom&callback=?'
     favicon: 'http://g.etfv.co/http://github.com'
   ,
+    type: 'tumblr'
+    url: 'http://api.tumblr.com/v2/blog/jarredbishop.tumblr.com/posts?api_key=YgpsEXCrpCtKL9U7aNBzWeDp0sSbZw1AeZQSt5QgsXRLdb5o24&jsonp=?'
+    favicon: 'http://g.etfv.co/http://tumblr.com'
+  ,
     type: 'dribbble'
     url: 'http://xml2json.heroku.com?url=http://dribbble.com/jarred/shots.rss&callback=?'
     favicon: 'http://g.etfv.co/http://dribbble.com'
-  ,
-    type: 'instapaper'
-    url: 'http://xml2json.heroku.com?url=http://www.instapaper.com/archive/rss/242/TS2f4M11DxVeYjmNcnZSG6XDk&callback=?'
-    favicon: 'http://g.etfv.co/http://instapaper.com'
   ,
     type: 'flickr'
     url: 'http://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=85497dbe3823d30b7db8ce79b3bc9ab3&user_id=72904000%40N00&per_page=20&page=0&format=json&extras=date_taken&jsoncallback=?'
@@ -66,7 +66,6 @@ jb.Views.ActivityStream = Backbone.View.extend
   serviceLoaded: (data, index) ->
     @loadIndex = index
     @service = @services[index]
-    # console.log service
     @$el.bind "#{@service.type}-ready", @whatNext
 
     switch @services[index].type
@@ -121,7 +120,10 @@ jb.Views.ActivityStream = Backbone.View.extend
       model = new Backbone.Model
         date: moment($entry.find('published').text(), 'YYYY-MM-DD-T-HH:mm:ss')
         type: 'github'
-        data: entry
+        data:
+          title: $entry.find('title').text()
+          content: $entry.find('content').text()
+          link: $entry.find('link').attr('href')
         favicon: @service.favicon
       @data.add model
       return
@@ -131,7 +133,6 @@ jb.Views.ActivityStream = Backbone.View.extend
   addDribbble: (data) ->
     $data = $($.parseXML data)
     _.each $data.find('item'), (item) =>
-      # console.log item
       $item = $ item
       model = new Backbone.Model
         date: moment($item.find('pubDate').text())
@@ -145,12 +146,25 @@ jb.Views.ActivityStream = Backbone.View.extend
     return
 
   addInstapaper: (data) ->
+    # console.log data
+    $data = $($.parseXML data)
+    _.each $data.find('item'), (entry) =>
+      $entry = $ entry
+      model = new Backbone.Model
+        date: moment($entry.find('pubDate').text())
+        type: 'instapaper'
+        favicon: @service.favicon
+        data:
+          title: $entry.find('title').text()
+          link: $entry.find('link').text()
+          description: $entry.find('description').text()
+      @data.add model
+      return
     @$el.trigger 'instapaper-ready'
     return
 
   addFlickr: (data) ->
     _.each data.photos.photo, (photo) =>
-      # console.log photo
       model = new Backbone.Model
         date: moment(photo.datetaken, 'YYYY-MM-DD HH:mm:ss')
         type: 'flickr'
@@ -162,7 +176,6 @@ jb.Views.ActivityStream = Backbone.View.extend
     return
 
   addSvpply: (data) ->
-    console.log data
     _.each data.response.products, (product) =>
       model = new Backbone.Model
         date: moment(product.date_created, 'YYYY-MM-DD HH:mm:ss')
@@ -175,9 +188,12 @@ jb.Views.ActivityStream = Backbone.View.extend
     return
 
   render: ->
+
+
     @$('.items').html ''
     
     @data.sort()
+    # @data.models = _.shuffle @data.models
     # Sort collection...
     _.each @data.models, (model, index) =>
       # @$el.append jb.Templates[model.get('type')] model.toJSON()

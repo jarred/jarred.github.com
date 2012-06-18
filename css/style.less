@@ -18,6 +18,46 @@ body{
   display: none;
 }
 
+section#intro{
+  > .bio{
+    width: 400px;
+    text-align: center;
+    font: 600 20px/24px 'Times New Roman', Serif;
+    position: relative;
+    left: 50%;
+    margin-left: -200px;
+    margin-bottom: 40px;
+  }
+  > .image{
+    height: 400px;
+    position: relative;
+    > .left{
+      text-align: right;
+      position: absolute;
+      left: 50%;
+      width: 300px;
+      margin-left: -620px;
+      top: 40px;
+    }
+    > .right{
+      position: absolute;
+      top: 40px;
+      left: 50%;
+      margin-left: 320px;
+    }
+    > .center{
+      position: absolute;
+      width: 600px;
+      left: 50%;
+      margin-left: -300px;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      height: 400px;
+    }
+  }
+}
+
 section#activity{
   margin-top: 30px;
   position: relative;
@@ -66,14 +106,14 @@ section#activity{
     top: 0px;
     bottom: 0px;
     width: 1px;
-    border-left: 1px dotted #CCC;
+    border-left: 1px solid #DDD;
     left: 50%;
     z-index: 1;
   }
 }
 
 .item{
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   position: relative;
   overflow: visible;
   z-index: 2;
@@ -135,11 +175,12 @@ section#activity{
       border-color: #2199cd;
     }
     p.tweet{
-      font: 400 16px/20px 'Times New Roman', Serif;
+      /*font: 400 16px/20px 'Times New Roman', Serif;*/
+      font: 500 15px/20px 'Helvetica Neue', Sans-Serif;
       width: 240px;
       a{
         text-decoration: none;
-        font: 600 15px/20px 'Helvetica Neue', Sans-Serif;
+        font: 500 15px/20px 'Helvetica Neue', Sans-Serif;
         color: #2199cd;
       }
     }
@@ -148,6 +189,16 @@ section#activity{
     > .favicon,
     > .connection{
       border-color: #486682;
+    }
+    blockquote{
+      font: 400 16px/20px 'Times New Roman', Serif;
+      text-align: center;
+    }
+    p.source{
+      font: 400 10px/20px verdana;
+      color: #AAA;
+      text-align: center;
+      margin-top: 10px;
     }
   }
   &.flickr{
@@ -160,6 +211,43 @@ section#activity{
     > .favicon,
     > .connection{
       border-color: #f175a5;
+    }
+    > .content{
+      p{
+        display: none;
+      }
+    }
+  }
+  &.instapaper{
+    h2{
+      font: 600 18px/22px 'Times New Roman', Serif;
+      a{
+        text-decoration: none;
+        color: #000;
+      }
+    }
+  }
+  &.github{
+    > .favicon,
+    > .connection{
+      border-color: #000;
+    }
+    > .content{
+      font: 400 11px/20px 'Monaco', monospace;
+      time,
+      strong{
+        display: none;
+      }
+      a{
+        color: inherit;
+        text-decoration: underline;
+      }
+    }
+  }
+  &.svpply{
+    > .favicon,
+    > .connection{
+      border-color: #000;
     }
   }
 }

@@ -16,7 +16,7 @@
       this.$el.html(this.template(this.model.toJSON()));
       this.$el.append(jb.Templates.favicon(this.model.toJSON()));
     },
-    template: _.template("<div class=\"content\"><%= data.childNodes[9].textContent %></div>")
+    template: _.template("<div class=\"content\"><%= data.content %></div>")
   });
 
 }).call(this);

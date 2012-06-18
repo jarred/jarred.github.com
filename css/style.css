@@ -112,6 +112,43 @@ body {
 .hide {
   display: none;
 }
+section#intro > .bio {
+  width: 400px;
+  text-align: center;
+  font: 600 20px/24px 'Times New Roman', Serif;
+  position: relative;
+  left: 50%;
+  margin-left: -200px;
+  margin-bottom: 40px;
+}
+section#intro > .image {
+  height: 400px;
+  position: relative;
+}
+section#intro > .image > .left {
+  text-align: right;
+  position: absolute;
+  left: 50%;
+  width: 300px;
+  margin-left: -620px;
+  top: 40px;
+}
+section#intro > .image > .right {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  margin-left: 320px;
+}
+section#intro > .image > .center {
+  position: absolute;
+  width: 600px;
+  left: 50%;
+  margin-left: -300px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 400px;
+}
 section#activity {
   margin-top: 30px;
   position: relative;
@@ -161,12 +198,12 @@ section#activity > .vertical-border {
   top: 0px;
   bottom: 0px;
   width: 1px;
-  border-left: 1px dotted #CCC;
+  border-left: 1px solid #DDD;
   left: 50%;
   z-index: 1;
 }
 .item {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   position: relative;
   overflow: visible;
   z-index: 2;
@@ -222,17 +259,29 @@ section#activity > .vertical-border {
   border-color: #2199cd;
 }
 .item.twitter p.tweet {
-  font: 400 16px/20px 'Times New Roman', Serif;
+  /*font: 400 16px/20px 'Times New Roman', Serif;*/
+
+  font: 500 15px/20px 'Helvetica Neue', Sans-Serif;
   width: 240px;
 }
 .item.twitter p.tweet a {
   text-decoration: none;
-  font: 600 15px/20px 'Helvetica Neue', Sans-Serif;
+  font: 500 15px/20px 'Helvetica Neue', Sans-Serif;
   color: #2199cd;
 }
 .item.tumblr > .favicon,
 .item.tumblr > .connection {
   border-color: #486682;
+}
+.item.tumblr blockquote {
+  font: 400 16px/20px 'Times New Roman', Serif;
+  text-align: center;
+}
+.item.tumblr p.source {
+  font: 400 10px/20px verdana;
+  color: #AAA;
+  text-align: center;
+  margin-top: 10px;
 }
 .item.flickr > .favicon,
 .item.flickr > .connection {
@@ -241,4 +290,33 @@ section#activity > .vertical-border {
 .item.dribbble > .favicon,
 .item.dribbble > .connection {
   border-color: #f175a5;
+}
+.item.dribbble > .content p {
+  display: none;
+}
+.item.instapaper h2 {
+  font: 600 18px/22px 'Times New Roman', Serif;
+}
+.item.instapaper h2 a {
+  text-decoration: none;
+  color: #000;
+}
+.item.github > .favicon,
+.item.github > .connection {
+  border-color: #000;
+}
+.item.github > .content {
+  font: 400 11px/20px 'Monaco', monospace;
+}
+.item.github > .content time,
+.item.github > .content strong {
+  display: none;
+}
+.item.github > .content a {
+  color: inherit;
+  text-decoration: underline;
+}
+.item.svpply > .favicon,
+.item.svpply > .connection {
+  border-color: #000;
 }
