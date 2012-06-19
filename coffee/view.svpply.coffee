@@ -14,8 +14,8 @@ jb.Views.svpply = Backbone.View.extend
     return
 
   template: _.template """
+    <label>wants</label>
     <div class="content">
-      <label>wants</label>
       <a href="<%= data.page_url %>"><img src="<%= data.image %>" /></a>
     </div>
   """

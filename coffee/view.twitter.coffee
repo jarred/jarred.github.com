@@ -14,5 +14,6 @@ jb.Views.twitter = Backbone.View.extend
     return
 
   template: _.template """
+    <label>tweeted</label>
     <div class="content"><p class="tweet"><%= window.twttr.txt.autoLink(data.text) %></p></div>
   """

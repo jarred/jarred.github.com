@@ -194,7 +194,7 @@ jb.Views.ActivityStream = Backbone.View.extend
 
   addPinboard: (data) ->
     $data = $($.parseXML data)
-    console.log data['rdf:RDF'].item
+    # console.log data['rdf:RDF'].item
     _.each data['rdf:RDF'].item, (item) =>
       model = new Backbone.Model
         date: moment(item['dc:date'], 'YYYY-MM-DDTHH:mm:ss')

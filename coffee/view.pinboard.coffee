@@ -16,7 +16,8 @@ jb.Views.pinboard = Backbone.View.extend
     return
 
   template: _.template """
+  <label>saved</label>
   <div class="content">
-    <h2><label>saved</label><a href="<%= data.link %>"><%= data.title %></a></h2>
+    <h2><a href="<%= data.link %>"><%= data.title %></a></h2>
   </div>
   """

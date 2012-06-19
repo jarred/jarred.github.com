@@ -151,6 +151,10 @@ section#intro > .image > .center {
 }
 section#activity {
   margin-top: 30px;
+  padding: 30px 0px;
+  background: #dddddd url('../images/grid.png') repeat center center;
+  background-attachment: fixed;
+  border-top: 1px solid #CCC;
   position: relative;
 }
 section#activity > .status {
@@ -198,7 +202,10 @@ section#activity > .vertical-border {
   top: 0px;
   bottom: 0px;
   width: 1px;
-  border-left: 1px solid #DDD;
+  margin-left: -1px;
+  background-color: #EEE;
+  border-left: 1px solid #AAA;
+  background-attachment: fixed;
   left: 50%;
   z-index: 1;
 }
@@ -208,6 +215,23 @@ section#activity > .vertical-border {
   overflow: visible;
   z-index: 2;
 }
+.item label {
+  font: 600 10px/20px 'Helvetica Neue', Sans-Serif;
+  text-transform: uppercase;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  height: 20px;
+  margin-top: -10px;
+  padding: 0px 10px 0px 13px;
+  background-color: #000;
+  color: #FFF;
+  /*opacity: .5;*/
+
+  border-radius: 10px;
+  letter-spacing: 3px;
+  z-index: 1;
+}
 .item > .connection {
   width: 100px;
   height: 1px;
@@ -216,6 +240,7 @@ section#activity > .vertical-border {
   left: 50%;
   z-index: 1;
   top: 50%;
+  display: none;
 }
 .item > .favicon {
   width: 30px;
@@ -231,14 +256,30 @@ section#activity > .vertical-border {
   z-index: 10;
 }
 .item > .favicon img {
+  position: relative;
+  z-index: 11;
   margin: 7px;
   width: 16px;
   height: 16px;
+}
+.item > .favicon > .gloss {
+  width: 21px;
+  height: 21px;
+  background: url('../images/favicon-gloss.png') no-repeat top left;
+  position: absolute;
+  top: 2px;
+  left: 8px;
+  z-index: 12;
 }
 .item > .content {
   width: 360px;
   position: relative;
   left: 50%;
+}
+.item.left label {
+  right: 50%;
+  margin-right: 8px;
+  before: ':';
 }
 .item.left > .connection {
   margin-left: -100px;
@@ -251,12 +292,20 @@ section#activity > .vertical-border {
   text-align: right;
   margin-left: 120px;
 }
+.item.right label {
+  left: 50%;
+  margin-left: 8px;
+  after: ':';
+}
 .item.right > .content {
   margin-left: 120px;
 }
 .item.twitter > .favicon,
 .item.twitter > .connection {
   border-color: #2199cd;
+}
+.item.twitter label {
+  background-color: #2199cd;
 }
 .item.twitter p.tweet {
   /*font: 400 16px/20px 'Times New Roman', Serif;*/
@@ -273,6 +322,11 @@ section#activity > .vertical-border {
 .item.tumblr > .connection {
   border-color: #486682;
 }
+.item.tumblr label {
+  background-color: #486682;
+  position: relative;
+  z-index: 20;
+}
 .item.tumblr blockquote {
   font: 400 16px/20px 'Times New Roman', Serif;
   text-align: center;
@@ -283,13 +337,37 @@ section#activity > .vertical-border {
   text-align: center;
   margin-top: 10px;
 }
+.item.tumblr .images {
+  position: relative;
+  height: 300px;
+}
+.item.tumblr .images > .image {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  left: 0px;
+  top: 0px;
+  z-index: 5;
+}
+.item.tumblr .images > .image:first-child {
+  z-index: 6;
+}
 .item.flickr > .favicon,
 .item.flickr > .connection {
   border-color: #3665b0;
 }
+.item.flickr label {
+  background-color: #3665b0;
+}
 .item.dribbble > .favicon,
 .item.dribbble > .connection {
   border-color: #f175a5;
+}
+.item.dribbble label {
+  background-color: #f175a5;
 }
 .item.dribbble > .content p {
   display: none;
@@ -320,7 +398,17 @@ section#activity > .vertical-border {
 .item.svpply > .connection {
   border-color: #000;
 }
+.item.svpply label {
+  color: #000;
+  background-color: #FFF;
+}
+.item.pinboard {
+  color: #000;
+}
 .item.pinboard > .favicon,
 .item.pinboard > .connection {
   border-color: #c02026;
+}
+.item.pinboard label {
+  background-color: #c02026;
 }

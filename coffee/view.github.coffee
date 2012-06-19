@@ -15,5 +15,8 @@ jb.Views.github = Backbone.View.extend
     return
 
   template: _.template """
-    <div class="content"><%= data.content %></div>
+    <label>pushed</label>
+    <div class="content">
+      <%= data.content %>
+    </div>
   """

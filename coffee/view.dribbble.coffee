@@ -15,6 +15,7 @@ jb.Views.dribbble = Backbone.View.extend
     return
 
   template: _.template """
+    <label>dribbbled</label>
     <div class="content">
       <%= image %>
     </div>
