@@ -3,6 +3,10 @@ jb.Views ||= {}
 jb.Views.ActivityStream = Backbone.View.extend
 
   services: [
+    type: 'lookwork'
+    url: 'http://xml2json.heroku.com?url=http://lookwork.com/jarred/library.rss&callback=?'
+    favicon: 'http://lookwork.com/assets/images/favicon.png'
+  ,
     type: 'twitter'
     url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=jarred&callback=?'
     favicon: 'http://g.etfv.co/http://twitter.com'
@@ -81,6 +85,7 @@ jb.Views.ActivityStream = Backbone.View.extend
       when 'flickr' then @addFlickr data
       when 'svpply' then @addSvpply data
       when 'pinboard' then @addPinboard data
+      when 'lookwork' then @addLookwork data
     return
 
   whatNext: ->
@@ -207,6 +212,29 @@ jb.Views.ActivityStream = Backbone.View.extend
         @data.add model
       return
     @$el.trigger 'pinboard-ready'
+    return
+
+  addLookwork: (data) ->
+    $data = $($(data)[1].nextSibling)
+    _.each $data.find('item'), (item) =>
+      $item = $(item)
+      console.log $item
+      model = new Backbone.Model
+        type: 'lookwork'
+        date: moment($item.find('pubDate').text())
+        content: String($item.find('description').html()).replace("<!--[CDATA[", "").replace("]]>", "").replace("]]>", "")
+        favicon: @service.favicon
+      @data.add model
+      return
+    @$el.trigger 'lookwork-ready'
+    return
+    # $data = $($.parseXML data)
+    $data = $(data)[2]
+    console.log $data
+    _.each $data.find('item'), (item) =>
+      console.log item
+      return
+    @$el.trigger 'lookwork-ready'
     return
 
   render: ->

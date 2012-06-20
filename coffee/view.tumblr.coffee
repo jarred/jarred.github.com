@@ -10,7 +10,7 @@ jb.Views.tumblr = Backbone.View.extend
 
   render: ->
     # console.log @model.get('data').type
-    console.log @model.toJSON()
+    # console.log @model.toJSON()
     @$el.html @template @model.toJSON()
     @$el.append jb.Templates.favicon @model.toJSON()
     switch @model.get('data').type

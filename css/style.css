@@ -324,8 +324,6 @@ section#activity > .vertical-border {
 }
 .item.tumblr label {
   background-color: #486682;
-  position: relative;
-  z-index: 20;
 }
 .item.tumblr blockquote {
   font: 400 16px/20px 'Times New Roman', Serif;

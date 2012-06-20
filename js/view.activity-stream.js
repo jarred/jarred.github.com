@@ -9,6 +9,10 @@
   jb.Views.ActivityStream = Backbone.View.extend({
     services: [
       {
+        type: 'lookwork',
+        url: 'http://xml2json.heroku.com?url=http://lookwork.com/jarred/library.rss&callback=?',
+        favicon: 'http://lookwork.com/assets/images/favicon.png'
+      }, {
         type: 'twitter',
         url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=jarred&callback=?',
         favicon: 'http://g.etfv.co/http://twitter.com'
@@ -103,6 +107,9 @@
           break;
         case 'pinboard':
           this.addPinboard(data);
+          break;
+        case 'lookwork':
+          this.addLookwork(data);
       }
     },
     whatNext: function() {
@@ -250,6 +257,31 @@
         }
       });
       this.$el.trigger('pinboard-ready');
+    },
+    addLookwork: function(data) {
+      var $data,
+        _this = this;
+      $data = $($(data)[1].nextSibling);
+      _.each($data.find('item'), function(item) {
+        var $item, model;
+        $item = $(item);
+        console.log($item);
+        model = new Backbone.Model({
+          type: 'lookwork',
+          date: moment($item.find('pubDate').text()),
+          content: String($item.find('description').html()).replace("<!--[CDATA[", "").replace("]]>", "").replace("]]>", ""),
+          favicon: _this.service.favicon
+        });
+        _this.data.add(model);
+      });
+      this.$el.trigger('lookwork-ready');
+      return;
+      $data = $(data)[2];
+      console.log($data);
+      _.each($data.find('item'), function(item) {
+        console.log(item);
+      });
+      this.$el.trigger('lookwork-ready');
     },
     render: function() {
       var _this = this;

@@ -14,7 +14,6 @@
       this.render();
     },
     render: function() {
-      console.log(this.model.toJSON());
       this.$el.html(this.template(this.model.toJSON()));
       this.$el.append(jb.Templates.favicon(this.model.toJSON()));
       switch (this.model.get('data').type) {

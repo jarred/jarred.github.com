@@ -23,6 +23,7 @@ jb.Main =
           "js/view.instapaper"
           "js/view.svpply"
           "js/view.pinboard"
+          "js/view.lookwork"
           "js/view.activity-stream"
         ], () =>
           @init()
