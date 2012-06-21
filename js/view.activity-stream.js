@@ -263,13 +263,16 @@
         _this = this;
       $data = $($(data)[1].nextSibling);
       _.each($data.find('item'), function(item) {
-        var $item, model;
+        var $item, description, model;
         $item = $(item);
-        console.log($item);
+        description = String($item.find('description').html());
+        description = description.replace("<!--[CDATA[", "");
+        description = description.replace("]]>", "");
+        console.log($item.find('pubDate').text());
         model = new Backbone.Model({
           type: 'lookwork',
-          date: moment($item.find('pubDate').text()),
-          content: String($item.find('description').html()).replace("<!--[CDATA[", "").replace("]]>", "").replace("]]>", ""),
+          date: moment(new Date($item.find('pubDate').text())),
+          content: description,
           favicon: _this.service.favicon
         });
         _this.data.add(model);

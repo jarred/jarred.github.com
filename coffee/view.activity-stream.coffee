@@ -218,11 +218,15 @@ jb.Views.ActivityStream = Backbone.View.extend
     $data = $($(data)[1].nextSibling)
     _.each $data.find('item'), (item) =>
       $item = $(item)
-      console.log $item
+      # console.log $item
+      description = String $item.find('description').html()
+      description = description.replace("<!--[CDATA[", "")
+      description = description.replace("]]>", "")
+      console.log $item.find('pubDate').text()
       model = new Backbone.Model
         type: 'lookwork'
-        date: moment($item.find('pubDate').text())
-        content: String($item.find('description').html()).replace("<!--[CDATA[", "").replace("]]>", "").replace("]]>", "")
+        date: moment(new Date($item.find('pubDate').text()))
+        content: description
         favicon: @service.favicon
       @data.add model
       return

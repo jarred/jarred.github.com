@@ -11,6 +11,9 @@ jb.Views.lookwork = Backbone.View.extend
   render: ->
     @$el.html @template @model.toJSON()
     @$el.append jb.Templates.favicon @model.toJSON()
+    img = new Image()
+    img.src = @$('img').attr('src') 
+    @$('.content').html img
     return
 
   template: _.template """
