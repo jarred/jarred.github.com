@@ -9,10 +9,6 @@
   jb.Views.ActivityStream = Backbone.View.extend({
     services: [
       {
-        type: 'lookwork',
-        url: 'http://xml2json.heroku.com?url=http://lookwork.com/jarred/library.rss&callback=?',
-        favicon: 'http://lookwork.com/assets/images/favicon.png'
-      }, {
         type: 'twitter',
         url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=jarred&callback=?',
         favicon: 'http://g.etfv.co/http://twitter.com'
@@ -44,6 +40,10 @@
         type: 'pinboard',
         url: 'http://xml2json.heroku.com?url=http://feeds.pinboard.in/rss/secret:f06efe78d64f6c8a98b3/u:jarred/&callback=?',
         favicon: 'http://g.etfv.co/http://pinboard.in'
+      }, {
+        type: 'lookwork',
+        url: 'http://xml2json.heroku.com?url=http://lookwork.com/jarred/library.rss&callback=?',
+        favicon: 'http://lookwork.com/assets/images/favicon.png'
       }
     ],
     initialize: function(o) {
