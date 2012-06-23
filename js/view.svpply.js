@@ -7,6 +7,7 @@
   jb.Views || (jb.Views = {});
 
   jb.Views.svpply = Backbone.View.extend({
+    className: 'block svpply',
     initialize: function(options) {
       this.options = options;
       _.bindAll(this);
@@ -17,7 +18,7 @@
       this.$el.html(this.template(this.model.toJSON()));
       this.$el.append(jb.Templates.favicon(this.model.toJSON()));
     },
-    template: _.template("<label>wants</label>\n<div class=\"content\">\n  <a href=\"<%= data.page_url %>\"><img src=\"<%= data.image %>\" /></a>\n</div>")
+    template: _.template("<div class=\"content\" style=\"background-image:url('<%= data.image %>');\">\n  \n</div>")
   });
 
 }).call(this);

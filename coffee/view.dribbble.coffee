@@ -1,6 +1,8 @@
 jb = window.JB ||= {}
 jb.Views ||= {}
 jb.Views.dribbble = Backbone.View.extend
+
+  className: 'block dribbble double-height'
   
   initialize: (@options) ->
     _.bindAll @
@@ -15,8 +17,7 @@ jb.Views.dribbble = Backbone.View.extend
     return
 
   template: _.template """
-    <label>dribbbled</label>
     <div class="content">
-      <%= image %>
+      <img src="<%= image %>" />
     </div>
   """

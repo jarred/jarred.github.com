@@ -5,7 +5,7 @@
   jb = window.JB || (window.JB = {});
 
   jb.Templates = {
-    favicon: _.template("<div class=\"favicon\">\n  <img src=\"<%= favicon %>\" />\n  <div class=\"gloss\"></div>\n</div>")
+    favicon: _.template("<div class=\"border top\"></div>\n<div class=\"border left\"></div>\n<!--\n<div class=\"favicon\">\n  <img src=\"<%= favicon %>\" />\n  <div class=\"gloss\"></div>\n</div>\n-->")
   };
 
 }).call(this);

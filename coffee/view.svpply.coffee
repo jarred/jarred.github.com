@@ -1,6 +1,8 @@
 jb = window.JB ||= {}
 jb.Views ||= {}
 jb.Views.svpply = Backbone.View.extend
+
+  className: 'block svpply'
   
   initialize: (@options) ->
     _.bindAll @
@@ -14,8 +16,7 @@ jb.Views.svpply = Backbone.View.extend
     return
 
   template: _.template """
-    <label>wants</label>
-    <div class="content">
-      <a href="<%= data.page_url %>"><img src="<%= data.image %>" /></a>
+    <div class="content" style="background-image:url('<%= data.image %>');">
+      
     </div>
   """

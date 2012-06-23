@@ -7,6 +7,7 @@
   jb.Views || (jb.Views = {});
 
   jb.Views.tumblr = Backbone.View.extend({
+    className: 'block tumblr double-width double-height',
     initialize: function(options) {
       this.options = options;
       _.bindAll(this);

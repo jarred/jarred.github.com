@@ -1,6 +1,8 @@
 jb = window.JB ||= {}
 jb.Views ||= {}
 jb.Views.tumblr = Backbone.View.extend
+
+  className: 'block tumblr double-width double-height'
   
   initialize: (@options) ->
     _.bindAll @

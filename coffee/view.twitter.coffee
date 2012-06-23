@@ -1,6 +1,8 @@
 jb = window.JB ||= {}
 jb.Views ||= {}
 jb.Views.twitter = Backbone.View.extend
+
+  className: 'block twitter double-width'
   
   initialize: (@options) ->
     _.bindAll @
@@ -14,6 +16,5 @@ jb.Views.twitter = Backbone.View.extend
     return
 
   template: _.template """
-    <label>tweeted</label>
     <div class="content"><p class="tweet"><%= window.twttr.txt.autoLink(data.text) %></p></div>
   """

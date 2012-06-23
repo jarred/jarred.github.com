@@ -7,6 +7,7 @@
   jb.Views || (jb.Views = {});
 
   jb.Views.lookwork = Backbone.View.extend({
+    className: 'block lookwork',
     initialize: function(options) {
       this.options = options;
       _.bindAll(this);

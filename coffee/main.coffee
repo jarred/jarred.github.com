@@ -12,6 +12,7 @@ jb.Main =
       require [
         "http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min.js"
         "js/moment.min"
+        "js/jquery.isotope.min.js"
         "js/templates"
       ], () =>
         require [

@@ -1,6 +1,8 @@
 jb = window.JB ||= {}
 jb.Views ||= {}
 jb.Views.github = Backbone.View.extend
+
+  className: 'block github double-width'
   
   initialize: (@options) ->
     _.bindAll @
@@ -15,8 +17,27 @@ jb.Views.github = Backbone.View.extend
     return
 
   template: _.template """
-    <label>pushed</label>
     <div class="content">
-      <%= data.content %>
+      <div class="numbers">
+        <span class="number">&nbsp;</span>
+          <span class="number">0</span>
+          <span class="number">1</span>
+          <span class="number">2</span>
+          <span class="number">3</span>
+          <span class="number">4</span>
+          <span class="number">5</span>
+          <span class="number">6</span>
+          <span class="number">7</span>
+          <span class="number">8</span>
+          <span class="number">9</span>
+          <span class="number">10</span>
+          <span class="number">11</span>
+          <span class="number">12</span>
+          <span class="number">13</span>
+          <span class="number">14</span>
+      </div>
+      <div class="message">
+        <%= data.content %>
+      </div>
     </div>
   """

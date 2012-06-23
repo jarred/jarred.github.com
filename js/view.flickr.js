@@ -7,6 +7,7 @@
   jb.Views || (jb.Views = {});
 
   jb.Views.flickr = Backbone.View.extend({
+    className: 'block flickr double-height double-width',
     initialize: function(options) {
       this.options = options;
       _.bindAll(this);
@@ -17,7 +18,7 @@
       this.$el.html(this.template(this.model.toJSON()));
       this.$el.append(jb.Templates.favicon(this.model.toJSON()));
     },
-    template: _.template("<label>scanned</label>\n<div class=\"content\">\n  <a href=\"http://flickr.com/photo.gne?id=<%= data.id %>\"><img src=\"http://farm<%= data.farm %>.static.flickr.com/<%= data.server %>/<%= data.id %>_<%= data.secret %>_m.jpg\"></a>\n</div>")
+    template: _.template("<div class=\"content\" style=\"background-image:url('http://farm<%= data.farm %>.static.flickr.com/<%= data.server %>/<%= data.id %>_<%= data.secret %>_z.jpg');\">\n\n</div>")
   });
 
 }).call(this);

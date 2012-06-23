@@ -7,6 +7,7 @@
   jb.Views || (jb.Views = {});
 
   jb.Views.twitter = Backbone.View.extend({
+    className: 'block twitter double-width',
     initialize: function(options) {
       this.options = options;
       _.bindAll(this);
@@ -17,7 +18,7 @@
       this.$el.html(this.template(this.model.toJSON()));
       this.$el.append(jb.Templates.favicon(this.model.toJSON()));
     },
-    template: _.template("<label>tweeted</label>\n<div class=\"content\"><p class=\"tweet\"><%= window.twttr.txt.autoLink(data.text) %></p></div>")
+    template: _.template("<div class=\"content\"><p class=\"tweet\"><%= window.twttr.txt.autoLink(data.text) %></p></div>")
   });
 
 }).call(this);

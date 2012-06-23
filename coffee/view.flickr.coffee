@@ -1,6 +1,8 @@
 jb = window.JB ||= {}
 jb.Views ||= {}
 jb.Views.flickr = Backbone.View.extend
+
+  className: 'block flickr double-height double-width'
   
   initialize: (@options) ->
     _.bindAll @
@@ -14,8 +16,7 @@ jb.Views.flickr = Backbone.View.extend
     return
 
   template: _.template """
-  <label>scanned</label>
-  <div class="content">
-    <a href=\"http://flickr.com/photo.gne?id=<%= data.id %>\"><img src=\"http://farm<%= data.farm %>.static.flickr.com/<%= data.server %>/<%= data.id %>_<%= data.secret %>_m.jpg\"></a>
+  <div class="content" style="background-image:url('http://farm<%= data.farm %>.static.flickr.com/<%= data.server %>/<%= data.id %>_<%= data.secret %>_z.jpg');">
+
   </div>
   """

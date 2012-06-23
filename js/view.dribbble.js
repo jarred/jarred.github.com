@@ -7,6 +7,7 @@
   jb.Views || (jb.Views = {});
 
   jb.Views.dribbble = Backbone.View.extend({
+    className: 'block dribbble double-height',
     initialize: function(options) {
       this.options = options;
       _.bindAll(this);
@@ -17,7 +18,7 @@
       this.$el.html(this.template(this.model.toJSON()));
       this.$el.append(jb.Templates.favicon(this.model.toJSON()));
     },
-    template: _.template("<label>dribbbled</label>\n<div class=\"content\">\n  <%= image %>\n</div>")
+    template: _.template("<div class=\"content\">\n  <img src=\"<%= image %>\" />\n</div>")
   });
 
 }).call(this);

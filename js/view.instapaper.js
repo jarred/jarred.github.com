@@ -7,6 +7,7 @@
   jb.Views || (jb.Views = {});
 
   jb.Views.instapaper = Backbone.View.extend({
+    className: 'block instapaper double-height',
     initialize: function(options) {
       this.options = options;
       _.bindAll(this);
@@ -16,8 +17,9 @@
     render: function() {
       this.$el.html(this.template(this.model.toJSON()));
       this.$el.append(jb.Templates.favicon(this.model.toJSON()));
+      console.log(this.$('h2').height());
     },
-    template: _.template("<label>read</label>\n<div class=\"content\">\n  <h2><a href=\"<%= data.link %>\"><%= data.title %></a></h2>\n</div>")
+    template: _.template("<div class=\"content\">\n  <h2><a href=\"<%= data.link %>\"><%= data.title %></a></h2>\n  <div class=\"lines-illustration\">\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n  </div>\n</div>")
   });
 
 }).call(this);

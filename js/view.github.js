@@ -7,6 +7,7 @@
   jb.Views || (jb.Views = {});
 
   jb.Views.github = Backbone.View.extend({
+    className: 'block github double-width',
     initialize: function(options) {
       this.options = options;
       _.bindAll(this);
@@ -17,7 +18,7 @@
       this.$el.html(this.template(this.model.toJSON()));
       this.$el.append(jb.Templates.favicon(this.model.toJSON()));
     },
-    template: _.template("<label>pushed</label>\n<div class=\"content\">\n  <%= data.content %>\n</div>")
+    template: _.template("<div class=\"content\">\n  <div class=\"numbers\">\n    <span class=\"number\">&nbsp;</span>\n      <span class=\"number\">0</span>\n      <span class=\"number\">1</span>\n      <span class=\"number\">2</span>\n      <span class=\"number\">3</span>\n      <span class=\"number\">4</span>\n      <span class=\"number\">5</span>\n      <span class=\"number\">6</span>\n      <span class=\"number\">7</span>\n      <span class=\"number\">8</span>\n      <span class=\"number\">9</span>\n      <span class=\"number\">10</span>\n      <span class=\"number\">11</span>\n      <span class=\"number\">12</span>\n      <span class=\"number\">13</span>\n      <span class=\"number\">14</span>\n  </div>\n  <div class=\"message\">\n    <%= data.content %>\n  </div>\n</div>")
   });
 
 }).call(this);

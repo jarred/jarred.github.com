@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'EuclidBPBoldBold';
+  src: url('./euclid_bp_bold-webfont.eot');
+  src: url('./euclid_bp_bold-webfont.eot?#iefix') format('embedded-opentype'), url('./euclid_bp_bold-webfont.woff') format('woff'), url('./euclid_bp_bold-webfont.ttf') format('truetype'), url('./euclid_bp_bold-webfont.svg#EuclidBPBoldBold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 /*
 YUI 3.4.1 (build 4118)
 Copyright 2011 Yahoo! Inc. All rights reserved.
@@ -106,10 +113,10 @@ legend {
 html {
   font: 400 12px/18px 'Geneva', Sans-Serif;
 }
-body {
-  margin: 40px;
-}
 .hide {
+  display: none;
+}
+section#intro {
   display: none;
 }
 section#intro > .bio {
@@ -150,11 +157,6 @@ section#intro > .image > .center {
   height: 400px;
 }
 section#activity {
-  margin-top: 30px;
-  padding: 30px 0px;
-  background: #f1f1f1;
-  background-attachment: fixed;
-  border-top: 1px solid #DDD;
   position: relative;
 }
 section#activity > .status {
@@ -196,226 +198,161 @@ section#activity > .status > i.icon > .favicons > .favicon {
 section#activity > .status > i.icon > .favicons > .favicon.loading-anim {
   background-image: url('../images/loading.gif');
 }
-section#activity > .vertical-border {
+section#activity > .items {
+  /*margin-right: 192px;*/
+
+}
+.block {
+  overflow: hidden;
+  width: 192px;
+  height: 192px;
+}
+.block.double-height {
+  height: 384px;
+}
+.block.tripple-height {
+  height: 576px;
+}
+.block.double-width {
+  width: 384px;
+}
+.block.tripple-width {
+  width: 576px;
+}
+.block > .border {
   position: absolute;
+}
+.block > .border.top {
+  left: 0px;
   top: 0px;
-  bottom: 0px;
-  width: 1px;
-  margin-left: -1px;
-  background-color: #EEE;
-  border-left: 1px solid #CCC;
-  left: 50%;
-  z-index: 1;
-}
-.item {
-  margin-bottom: 20px;
-  position: relative;
-  overflow: visible;
-  z-index: 2;
-}
-.item label {
-  font: 600 10px/20px 'Helvetica Neue', Sans-Serif;
-  text-transform: uppercase;
-  display: inline-block;
-  position: absolute;
-  top: 50%;
-  height: 20px;
-  margin-top: -10px;
-  padding: 0px 10px 0px 13px;
-  background-color: #000;
-  color: #FFF;
-  /*opacity: .5;*/
-
-  border-radius: 10px;
-  letter-spacing: 3px;
-  z-index: 1;
-}
-.item > .connection {
-  width: 100px;
+  right: 0px;
   height: 1px;
-  border-bottom: 1px dotted #AAA;
+  border-top: 1px dotted #CCC;
+}
+.block > .border.left {
+  right: 0px;
+  bottom: 0px;
+  top: 0px;
+  width: 1px;
+  border-right: 1px dotted #CCC;
+}
+.block.twitter > .content {
   position: absolute;
-  left: 50%;
-  z-index: 1;
-  top: 50%;
-  display: none;
+  left: 20px;
+  top: 20px;
+  right: 20px;
+  bottom: 20px;
+  background-color: #1fb9e4;
 }
-.item > .favicon {
-  width: 30px;
-  height: 30px;
-  border: 2px solid #ccc;
-  border-radius: 16px;
+.block.twitter > .content > p.tweet {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-top: -16px;
-  margin-left: -16px;
-  background-color: #FFF;
-  z-index: 10;
+  bottom: 0px;
+  text-align: center;
+  margin: 20px;
+  color: #FFF;
+  font: 400 15px/20px 'EuclidBPBoldBold';
 }
-.item > .favicon img {
-  position: relative;
-  z-index: 11;
-  margin: 7px;
-  width: 16px;
-  height: 16px;
+.block.twitter > .content > p.tweet a {
+  color: #FFF;
+  text-decoration: underline;
 }
-.item > .favicon > .gloss {
-  width: 21px;
-  height: 21px;
-  background: url('../images/favicon-gloss.png') no-repeat top left;
+.block.instapaper > .content {
   position: absolute;
-  top: 2px;
-  left: 8px;
-  z-index: 12;
+  left: 20px;
+  top: 20px;
+  right: 20px;
+  bottom: 20px;
+  background-color: #c0bfbf;
+  overflow: hidden;
 }
-.item > .content {
-  width: 360px;
-  position: relative;
-  left: 50%;
+.block.instapaper > .content > h2 {
+  padding: 20px;
+  padding-bottom: 26px;
+  font: 600 16px/20px 'Helvetica Neue', Sans-Serif;
 }
-.item.left label {
-  right: 50%;
-  margin-right: 8px;
-  before: ':';
-}
-.item.left > .connection {
-  margin-left: -100px;
-}
-.item.left > .content {
-  text-align: right;
-  margin-left: -480px;
-}
-.item.left.twitter p.tweet {
-  text-align: right;
-  margin-left: 120px;
-}
-.item.right label {
-  left: 50%;
-  margin-left: 8px;
-  after: ':';
-}
-.item.right > .content {
-  margin-left: 120px;
-}
-.item.twitter > .favicon,
-.item.twitter > .connection {
-  border-color: #2199cd;
-}
-.item.twitter label {
-  background-color: #2199cd;
-}
-.item.twitter p.tweet {
-  /*font: 400 16px/20px 'Times New Roman', Serif;*/
-
-  font: 500 15px/20px 'Helvetica Neue', Sans-Serif;
-  width: 240px;
-}
-.item.twitter p.tweet a {
+.block.instapaper > .content > h2 a {
+  color: #000;
   text-decoration: none;
-  font: 500 15px/20px 'Helvetica Neue', Sans-Serif;
-  color: #2199cd;
 }
-.item.tumblr > .favicon,
-.item.tumblr > .connection {
-  border-color: #486682;
+.block.instapaper > .content > .lines-illustration > .line {
+  height: 10px;
+  background-color: #FFF;
+  margin: 0px 20px 10px 20px;
 }
-.item.tumblr label {
-  background-color: #486682;
-}
-.item.tumblr blockquote {
-  font: 400 16px/20px 'Times New Roman', Serif;
-  text-align: center;
-}
-.item.tumblr p.source {
-  font: 400 10px/20px verdana;
-  color: #AAA;
-  text-align: center;
-  margin-top: 10px;
-}
-.item.tumblr .images {
-  position: relative;
-  height: 300px;
-}
-.item.tumblr .images > .image {
+.block.flickr > .content {
   position: absolute;
-  width: 300px;
-  height: 300px;
+  left: 20px;
+  top: 20px;
+  bottom: 20px;
+  right: 20px;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
+}
+.block.pinboard > .content {
+  left: 20px;
+  top: 20px;
+  bottom: 20px;
+  right: 20px;
+  position: absolute;
+  background-color: #c33e34;
+}
+.block.pinboard > .content > h2 {
+  position: absolute;
+  top: 10px;
+  margin: 10px;
+  text-align: center;
+  font: 400 15px/20px 'EuclidBPBoldBold';
+}
+.block.pinboard > .content > h2 a {
+  color: #FFF;
+}
+.block.github > .content {
+  position: absolute;
   left: 0px;
   top: 0px;
-  z-index: 5;
+  right: 0px;
+  bottom: 0px;
 }
-.item.tumblr .images > .image:first-child {
-  z-index: 6;
+.block.github > .content > .numbers {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 40px;
+  border-right: 1px solid #DDD;
+  background-color: #EEE;
 }
-.item.flickr > .favicon,
-.item.flickr > .connection {
-  border-color: #3665b0;
+.block.github > .content > .numbers > .number {
+  display: block;
+  text-align: right;
+  font: 400 12px/16px 'Consolas', 'Menlo', "Liberation Mono", Courier, monospace;
+  margin-right: 10px;
 }
-.item.flickr label {
-  background-color: #3665b0;
+.block.github > .content > .message {
+  position: absolute;
+  left: 60px;
+  top: 20px;
+  right: 50px;
+  font: 400 12px/16px 'Consolas', 'Menlo', "Liberation Mono", Courier, monospace;
 }
-.item.dribbble > .favicon,
-.item.dribbble > .connection {
-  border-color: #f175a5;
+.block.svpply > .content {
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  right: 6px;
+  bottom: 6px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
-.item.dribbble label {
-  background-color: #f175a5;
+.block.dribbble > .content {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  right: 20px;
 }
-.item.dribbble > .content p {
-  display: none;
-}
-.item.instapaper h2 {
-  font: 600 18px/22px 'Times New Roman', Serif;
-}
-.item.instapaper h2 a {
-  text-decoration: none;
-  color: #000;
-}
-.item.github > .favicon,
-.item.github > .connection {
-  border-color: #777;
-}
-.item.github label {
-  background-color: #777;
-}
-.item.github > .content {
-  font: 400 12px/20px 'Geneva', Sans-Serif;
-  color: #777;
-}
-.item.github > .content time,
-.item.github > .content strong {
-  display: none;
-}
-.item.github > .content a {
-  color: inherit;
-  text-decoration: underline;
-}
-.item.svpply > .favicon,
-.item.svpply > .connection {
-  border-color: #000;
-}
-.item.svpply label {
-  color: #000;
-  background-color: #FFF;
-}
-.item.pinboard {
-  color: #000;
-}
-.item.pinboard > .favicon,
-.item.pinboard > .connection {
-  border-color: #c02026;
-}
-.item.pinboard label {
-  background-color: #c02026;
-}
-.item.pinboard > .content a {
-  text-decoration: none;
-  color: #c02026;
-}
-.item.pinboard > .content a:hover {
-  text-decoration: underline;
+.block.dribbble > .content img {
+  width: 150px !important;
+  border: 1px solid #000;
 }

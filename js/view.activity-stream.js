@@ -53,6 +53,22 @@
       this.servicesLoaded = 0;
       this.data = new Backbone.Collection();
       this.data.comparator = this.sortByDate;
+      this.renderedIDs = [];
+      this.$container = this.$('.items');
+      this.$container.isotope({
+        itemSelector: '.block',
+        layoutMode: 'masonry',
+        sortBy: 'date',
+        sortAscending: false,
+        getSortData: {
+          date: function($el) {
+            return parseInt($el.attr('data-date'));
+          }
+        },
+        masonry: {
+          columnWidth: 192
+        }
+      });
       this.setupPreloader();
       this.loadService(0);
     },
@@ -78,6 +94,11 @@
           return _this.serviceLoaded(data, n);
         }
       });
+    },
+    total: 0,
+    idPlease: function() {
+      this.total++;
+      return this.total;
     },
     serviceLoaded: function(data, index) {
       this.loadIndex = index;
@@ -119,6 +140,9 @@
         this.servicesLoaded++;
       } else {
         this.$('.status').addClass('hide');
+        this.$container.isotope({
+          sortBy: 'date'
+        });
       }
     },
     addTwitter: function(data) {
@@ -129,7 +153,8 @@
           date: moment(tweet.created_at),
           type: 'twitter',
           data: tweet,
-          favicon: _this.service.favicon
+          favicon: _this.service.favicon,
+          id: _this.idPlease()
         });
         _this.data.add(model);
       });
@@ -143,7 +168,8 @@
           date: moment(post.date, 'YYYY-MM-DD HH:mm:ss'),
           type: 'tumblr',
           data: post,
-          favicon: _this.service.favicon
+          favicon: _this.service.favicon,
+          id: _this.idPlease()
         });
         _this.data.add(model);
       });
@@ -159,6 +185,7 @@
         model = new Backbone.Model({
           date: moment($entry.find('published').text(), 'YYYY-MM-DD-T-HH:mm:ss'),
           type: 'github',
+          id: _this.idPlease(),
           data: {
             title: $entry.find('title').text(),
             content: $entry.find('content').text(),
@@ -180,8 +207,9 @@
         model = new Backbone.Model({
           date: moment($item.find('pubDate').text()),
           type: 'dribbble',
+          id: _this.idPlease(),
           data: item,
-          image: $item.find('description').text(),
+          image: $($item.find('description').text()).find('img').attr('src'),
           favicon: _this.service.favicon
         });
         _this.data.add(model);
@@ -198,6 +226,7 @@
         model = new Backbone.Model({
           date: moment($entry.find('pubDate').text()),
           type: 'instapaper',
+          id: _this.idPlease(),
           favicon: _this.service.favicon,
           data: {
             title: $entry.find('title').text(),
@@ -216,6 +245,7 @@
         model = new Backbone.Model({
           date: moment(photo.datetaken, 'YYYY-MM-DD HH:mm:ss'),
           type: 'flickr',
+          id: _this.idPlease(),
           data: photo,
           favicon: _this.service.favicon
         });
@@ -230,6 +260,7 @@
         model = new Backbone.Model({
           date: moment(product.date_created, 'YYYY-MM-DD HH:mm:ss'),
           type: 'svpply',
+          id: _this.idPlease(),
           data: product,
           favicon: _this.service.favicon
         });
@@ -246,6 +277,7 @@
         model = new Backbone.Model({
           date: moment(item['dc:date'], 'YYYY-MM-DDTHH:mm:ss'),
           type: 'pinboard',
+          id: _this.idPlease(),
           favicon: _this.service.favicon,
           data: {
             title: item.title,
@@ -271,6 +303,7 @@
         console.log($item.find('pubDate').text());
         model = new Backbone.Model({
           type: 'lookwork',
+          id: _this.idPlease(),
           date: moment(new Date($item.find('pubDate').text())),
           content: description,
           favicon: _this.service.favicon
@@ -287,27 +320,28 @@
       this.$el.trigger('lookwork-ready');
     },
     render: function() {
-      var _this = this;
-      this.$('.items').html('');
-      this.data.sort();
+      var $items,
+        _this = this;
+      $items = $("<div class=\"items\"></div>");
       _.each(this.data.models, function(model, index) {
-        var $el, view;
+        var view;
         if (jb.Views[model.get('type')] === void 0) {
           console.log("new view for " + (model.get('type')));
           return;
         }
+        if (_this.renderedIDs.indexOf(model.get('id')) >= 0) {
+          return;
+        }
         view = new jb.Views[model.get('type')]({
           model: model,
-          className: "item " + (model.get('type'))
+          attributes: {
+            'data-date': String(model.get('date').valueOf())
+          }
         });
-        $el = $(view.el);
-        _this.$('.items').append(view.el);
-        if (index % 2 === 0) {
-          $el.addClass('left');
-        } else {
-          $el.addClass('right');
-        }
+        $items.append(view.el);
+        _this.renderedIDs.push(model.get('id'));
       });
+      this.$container.isotope('insert', $items);
     }
   });
 

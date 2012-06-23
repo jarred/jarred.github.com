@@ -7,6 +7,7 @@
   jb.Views || (jb.Views = {});
 
   jb.Views.pinboard = Backbone.View.extend({
+    className: 'block pinboard',
     initialize: function(options) {
       this.options = options;
       _.bindAll(this);
@@ -17,7 +18,7 @@
       this.$el.html(this.template(this.model.toJSON()));
       this.$el.append(jb.Templates.favicon(this.model.toJSON()));
     },
-    template: _.template("<label>saved</label>\n<div class=\"content\">\n  <h2><a href=\"<%= data.link %>\"><%= data.title %></a></h2>\n</div>")
+    template: _.template("<div class=\"content\">\n  <h2><a href=\"<%= data.link %>\"><%= data.title %></a></h2>\n</div>")
   });
 
 }).call(this);

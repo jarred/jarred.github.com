@@ -1,6 +1,8 @@
 jb = window.JB ||= {}
 jb.Views ||= {}
 jb.Views.lookwork = Backbone.View.extend
+
+  className: 'block lookwork'
   
   initialize: (@options) ->
     _.bindAll @

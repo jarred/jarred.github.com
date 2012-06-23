@@ -1,6 +1,8 @@
 jb = window.JB ||= {}
 jb.Views ||= {}
 jb.Views.pinboard = Backbone.View.extend
+
+  className: 'block pinboard'
   
   initialize: (@options) ->
     _.bindAll @
@@ -16,7 +18,6 @@ jb.Views.pinboard = Backbone.View.extend
     return
 
   template: _.template """
-  <label>saved</label>
   <div class="content">
     <h2><a href="<%= data.link %>"><%= data.title %></a></h2>
   </div>

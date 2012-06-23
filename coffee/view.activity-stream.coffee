@@ -46,8 +46,26 @@ jb.Views.ActivityStream = Backbone.View.extend
     @servicesLoaded = 0
     @data = new Backbone.Collection()
     @data.comparator = @sortByDate
+    @renderedIDs = []
+
+    @$container = @$('.items')
+
+    @$container.isotope
+      itemSelector: '.block'
+      layoutMode: 'masonry'
+      sortBy: 'date'
+      sortAscending: false
+      getSortData:
+        date: ($el) ->
+          return parseInt $el.attr('data-date')
+      masonry:
+        columnWidth: 192
+
     @setupPreloader()
     @loadService 0
+
+    # $('#container').isotope({
+
     return
 
   sortByDate: (model) ->
@@ -71,6 +89,12 @@ jb.Views.ActivityStream = Backbone.View.extend
         @serviceLoaded data, n
     return
 
+  total: 0
+
+  idPlease: ->
+    @total++;
+    return @total
+
   serviceLoaded: (data, index) ->
     @loadIndex = index
     @service = @services[index]
@@ -90,13 +114,14 @@ jb.Views.ActivityStream = Backbone.View.extend
 
   whatNext: ->
     @render()
-
     if @servicesLoaded < @services.length - 1
       @loadService @loadIndex + 1
       @servicesLoaded++
     else
       @$('.status').addClass 'hide'
       # @render()
+      @$container.isotope
+        sortBy: 'date'
     return
 
   addTwitter: (data) ->
@@ -106,6 +131,7 @@ jb.Views.ActivityStream = Backbone.View.extend
         type: 'twitter'
         data: tweet
         favicon: @service.favicon
+        id: @idPlease()
       @data.add model
       return
     @$el.trigger 'twitter-ready'
@@ -118,6 +144,7 @@ jb.Views.ActivityStream = Backbone.View.extend
         type: 'tumblr'
         data: post
         favicon: @service.favicon
+        id: @idPlease()
       @data.add model
       return
     @$el.trigger 'tumblr-ready'
@@ -130,6 +157,7 @@ jb.Views.ActivityStream = Backbone.View.extend
       model = new Backbone.Model
         date: moment($entry.find('published').text(), 'YYYY-MM-DD-T-HH:mm:ss')
         type: 'github'
+        id: @idPlease()
         data:
           title: $entry.find('title').text()
           content: $entry.find('content').text()
@@ -147,8 +175,10 @@ jb.Views.ActivityStream = Backbone.View.extend
       model = new Backbone.Model
         date: moment($item.find('pubDate').text())
         type: 'dribbble'
+        id: @idPlease()
         data: item
-        image: $item.find('description').text()
+        # image: $item.find('description').text()
+        image: $($item.find('description').text()).find('img').attr('src')
         favicon: @service.favicon
       @data.add model
       return
@@ -163,6 +193,7 @@ jb.Views.ActivityStream = Backbone.View.extend
       model = new Backbone.Model
         date: moment($entry.find('pubDate').text())
         type: 'instapaper'
+        id: @idPlease()
         favicon: @service.favicon
         data:
           title: $entry.find('title').text()
@@ -178,6 +209,7 @@ jb.Views.ActivityStream = Backbone.View.extend
       model = new Backbone.Model
         date: moment(photo.datetaken, 'YYYY-MM-DD HH:mm:ss')
         type: 'flickr'
+        id: @idPlease()
         data: photo
         favicon: @service.favicon
       @data.add model
@@ -190,6 +222,7 @@ jb.Views.ActivityStream = Backbone.View.extend
       model = new Backbone.Model
         date: moment(product.date_created, 'YYYY-MM-DD HH:mm:ss')
         type: 'svpply'
+        id: @idPlease()
         data: product
         favicon: @service.favicon
       @data.add model
@@ -204,6 +237,7 @@ jb.Views.ActivityStream = Backbone.View.extend
       model = new Backbone.Model
         date: moment(item['dc:date'], 'YYYY-MM-DDTHH:mm:ss')
         type: 'pinboard'
+        id: @idPlease()
         favicon: @service.favicon
         data:
           title: item.title
@@ -225,6 +259,7 @@ jb.Views.ActivityStream = Backbone.View.extend
       console.log $item.find('pubDate').text()
       model = new Backbone.Model
         type: 'lookwork'
+        id: @idPlease()
         date: moment(new Date($item.find('pubDate').text()))
         content: description
         favicon: @service.favicon
@@ -242,23 +277,24 @@ jb.Views.ActivityStream = Backbone.View.extend
     return
 
   render: ->
-    @$('.items').html ''
-    @data.sort()
+    # @$('.items').html ''
+    # @data.sort()
     # @data.models = _.shuffle @data.models
     # Sort collection...
+    $items = $("<div class=\"items\"></div>")
     _.each @data.models, (model, index) =>
-      # @$el.append jb.Templates[model.get('type')] model.toJSON()
       if jb.Views[model.get('type')] == undefined
         console.log "new view for #{model.get('type')}"
         return
+      return if @renderedIDs.indexOf(model.get('id')) >= 0
       view = new jb.Views[model.get('type')]
         model: model
-        className: "item #{model.get('type')}"
-      $el = $(view.el)
-      @$('.items').append view.el
-      if index%2 == 0
-        $el.addClass 'left'
-      else
-        $el.addClass 'right'
+        attributes:
+          'data-date': String model.get('date').valueOf()
+      # $el = $(view.el)
+      $items.append view.el
+      # @$('.items').append view.el
+      @renderedIDs.push model.get('id')
       return
+    @$container.isotope('insert', $items)
     return
