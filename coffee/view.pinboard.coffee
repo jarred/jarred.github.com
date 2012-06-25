@@ -19,6 +19,8 @@ jb.Views.pinboard = Backbone.View.extend
 
   template: _.template """
   <div class="content">
+    <div class="top-strip"></div>
+    <div class="corner"><div class="tip"></div></div>
     <h2><a href="<%= data.link %>"><%= data.title %></a></h2>
   </div>
   """

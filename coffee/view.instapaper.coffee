@@ -16,7 +16,18 @@ jb.Views.instapaper = Backbone.View.extend
     @$el.html @template @model.toJSON()
     @$el.append jb.Templates.favicon @model.toJSON()
 
-    console.log @$('h2').height()
+    setTimeout @waitForRenderAndUpdate, 1
+    # @waitForRenderAndUpdate()
+    return
+
+  waitForRenderAndUpdate: ->
+    headingLines = @$('h2').height() / 20
+    _.each @$('.line'), (el, index) ->
+      if index > (13 - headingLines)
+        $(el).remove()
+      return
+    @$('.line:last').css
+      width: '30%'
     return
 
   template: _.template """

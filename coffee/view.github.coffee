@@ -19,7 +19,6 @@ jb.Views.github = Backbone.View.extend
   template: _.template """
     <div class="content">
       <div class="numbers">
-        <span class="number">&nbsp;</span>
           <span class="number">0</span>
           <span class="number">1</span>
           <span class="number">2</span>
@@ -30,11 +29,6 @@ jb.Views.github = Backbone.View.extend
           <span class="number">7</span>
           <span class="number">8</span>
           <span class="number">9</span>
-          <span class="number">10</span>
-          <span class="number">11</span>
-          <span class="number">12</span>
-          <span class="number">13</span>
-          <span class="number">14</span>
       </div>
       <div class="message">
         <%= data.content %>

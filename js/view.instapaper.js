@@ -17,7 +17,19 @@
     render: function() {
       this.$el.html(this.template(this.model.toJSON()));
       this.$el.append(jb.Templates.favicon(this.model.toJSON()));
-      console.log(this.$('h2').height());
+      setTimeout(this.waitForRenderAndUpdate, 1);
+    },
+    waitForRenderAndUpdate: function() {
+      var headingLines;
+      headingLines = this.$('h2').height() / 20;
+      _.each(this.$('.line'), function(el, index) {
+        if (index > (13 - headingLines)) {
+          $(el).remove();
+        }
+      });
+      this.$('.line:last').css({
+        width: '30%'
+      });
     },
     template: _.template("<div class=\"content\">\n  <h2><a href=\"<%= data.link %>\"><%= data.title %></a></h2>\n  <div class=\"lines-illustration\">\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n  </div>\n</div>")
   });
