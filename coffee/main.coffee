@@ -24,6 +24,7 @@ jb.Main =
           "js/view.instapaper"
           "js/view.svpply"
           "js/view.pinboard"
+          "js/view.scroller"
           "js/view.lookwork"
           "js/view.activity-stream"
         ], () =>

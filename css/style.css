@@ -245,18 +245,24 @@ section#activity > .items {
   background-color: #1fb9e4;
 }
 .block.twitter > .content > p.tweet {
+  margin: 20px;
+  color: #FFF;
+  font: 700 14px/22px "proxima-nova";
+  text-transform: uppercase;
+  letter-spacing: 1px;
   position: absolute;
   bottom: 0px;
   left: 0px;
   right: 0px;
   text-align: center;
-  margin: 20px;
-  color: #FFF;
-  font: 400 15px/20px 'EuclidBPBoldBold';
 }
 .block.twitter > .content > p.tweet a {
   color: #FFF;
-  text-decoration: underline;
+  text-decoration: none;
+  border-bottom: 1px solid #FFF;
+}
+.block.twitter > .content > p.tweet a:hover {
+  border-bottom-color: transparent;
 }
 .block.instapaper > .content {
   position: absolute;
@@ -264,13 +270,15 @@ section#activity > .items {
   top: 20px;
   right: 20px;
   bottom: 20px;
-  background-color: #c0bfbf;
+  /*background-color: #c0bfbf;*/
+
   overflow: hidden;
 }
 .block.instapaper > .content > h2 {
-  padding: 20px;
+  /*padding: 20px;*/
+
   padding-bottom: 26px;
-  font: 600 16px/20px 'Helvetica Neue', Sans-Serif;
+  font: 700 17px/20px 'Helvetica Neue';
 }
 .block.instapaper > .content > h2 a {
   color: #000;
@@ -278,8 +286,8 @@ section#activity > .items {
 }
 .block.instapaper > .content > .lines-illustration > .line {
   height: 10px;
-  background-color: #FFF;
-  margin: 0px 20px 10px 20px;
+  background-color: #CCC;
+  margin: 0px 0px 10px 0px;
 }
 .block.flickr > .content {
   position: absolute;
@@ -306,6 +314,7 @@ section#activity > .items {
   right: 0px;
   height: 20px;
   background: #81382f;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }
 .block.pinboard > .content > .corner {
   position: absolute;
@@ -388,4 +397,15 @@ section#activity > .items {
 .block.dribbble > .content img {
   width: 150px !important;
   border: 1px solid #000;
+}
+.scroller {
+  position: fixed;
+  right: 30px;
+  top: 0%;
+  height: 40px;
+  background: #000;
+  font: 400 13px/40px Sans-Serif;
+  color: #FFF;
+  padding: 0px 10px;
+  z-index: 10;
 }

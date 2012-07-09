@@ -15,10 +15,14 @@ jb.Views.ActivityStream = Backbone.View.extend
     url: 'http://xml2json.heroku.com?url=https://github.com/jarred.atom&callback=?'
     favicon: 'http://g.etfv.co/http://github.com'
   ,
-    type: 'tumblr'
-    url: 'http://api.tumblr.com/v2/blog/jarredbishop.tumblr.com/posts?api_key=YgpsEXCrpCtKL9U7aNBzWeDp0sSbZw1AeZQSt5QgsXRLdb5o24&jsonp=?'
-    favicon: 'http://g.etfv.co/http://tumblr.com'
+    type: 'pinboard'
+    url: 'http://xml2json.heroku.com?url=http://feeds.pinboard.in/rss/secret:f06efe78d64f6c8a98b3/u:jarred/&callback=?'
+    favicon: 'http://g.etfv.co/http://pinboard.in'
   ,
+  #   type: 'tumblr'
+  #   url: 'http://api.tumblr.com/v2/blog/jarredbishop.tumblr.com/posts?api_key=YgpsEXCrpCtKL9U7aNBzWeDp0sSbZw1AeZQSt5QgsXRLdb5o24&jsonp=?'
+  #   favicon: 'http://g.etfv.co/http://tumblr.com'
+  # ,
     type: 'dribbble'
     url: 'http://xml2json.heroku.com?url=http://dribbble.com/jarred/shots.rss&callback=?'
     favicon: 'http://g.etfv.co/http://dribbble.com'
@@ -30,15 +34,16 @@ jb.Views.ActivityStream = Backbone.View.extend
     type: 'svpply'
     url: 'https://api.svpply.com/v1/users/jarred/wants/products.json?limit=20&callback=?'
     favicon: 'http://g.etfv.co/http://svpply.com'
-  ,
-    type: 'pinboard'
-    url: 'http://xml2json.heroku.com?url=http://feeds.pinboard.in/rss/secret:f06efe78d64f6c8a98b3/u:jarred/&callback=?'
-    favicon: 'http://g.etfv.co/http://pinboard.in'
-  ,
-    type: 'lookwork'
-    url: 'http://xml2json.heroku.com?url=http://lookwork.com/jarred/library.rss&callback=?'
-    favicon: 'http://lookwork.com/assets/images/favicon.png'
+  # ,
+  #   type: 'lookwork'
+  #   url: 'http://xml2json.heroku.com?url=http://lookwork.com/jarred/library.rss&callback=?'
+  #   favicon: 'http://lookwork.com/assets/images/favicon.png'
   ]
+
+  ###
+  candidates
+    http://coderwall.com/jarred.json
+  ###
   
   initialize: (@o) ->
     _.bindAll @

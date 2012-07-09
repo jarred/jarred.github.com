@@ -23,11 +23,11 @@ jb.Views.instapaper = Backbone.View.extend
   waitForRenderAndUpdate: ->
     headingLines = @$('h2').height() / 20
     _.each @$('.line'), (el, index) ->
-      if index > (13 - headingLines)
+      if index > (14 - headingLines)
         $(el).remove()
       return
     @$('.line:last').css
-      width: '30%'
+      width: "#{30 + Math.round(Math.random() * 50)}%"
     return
 
   template: _.template """

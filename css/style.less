@@ -160,17 +160,23 @@ section#activity{
     bottom: 20px;
     background-color: #1fb9e4;
     > p.tweet{
+      margin: 20px;
+      color: #FFF;
+      font: 700 14px/22px "proxima-nova";
+      text-transform: uppercase;
+      letter-spacing: 1px;
       position: absolute;
       bottom: 0px;
       left: 0px;
       right: 0px;
       text-align: center;
-      margin: 20px;
-      color: #FFF;
-      font: 400 15px/20px 'EuclidBPBoldBold';
       a{
         color: #FFF;
-        text-decoration: underline;
+        text-decoration: none;
+        border-bottom: 1px solid #FFF;
+        &:hover{
+          border-bottom-color: transparent;
+        }
       }
     }
   }
@@ -183,12 +189,12 @@ section#activity{
     top: 20px;
     right: 20px;
     bottom: 20px;
-    background-color: #c0bfbf;
+    /*background-color: #c0bfbf;*/
     overflow: hidden;
     > h2{
-      padding: 20px;
+      /*padding: 20px;*/
       padding-bottom: 26px;
-      font: 600 16px/20px 'Helvetica Neue', Sans-Serif;
+      font: 700 17px/20px 'Helvetica Neue';
       a{
         color: #000;
         text-decoration: none;
@@ -197,8 +203,8 @@ section#activity{
     > .lines-illustration{
       > .line{
         height: 10px;
-        background-color: #FFF;
-        margin: 0px 20px 10px 20px;
+        background-color: #CCC;
+        margin: 0px 0px 10px 0px;
       }
     }
   }
@@ -232,6 +238,7 @@ section#activity{
       right: 0px;
       height: 20px;
       background: #81382f;
+      border-bottom: 1px solid rgba(0, 0, 0, .3);
     }
     > .corner{
       position: absolute;
@@ -326,4 +333,16 @@ section#activity{
     }
 
   }
+}
+
+.scroller{
+  position: fixed;
+  right: 30px;
+  top: 0%;
+  height: 40px;
+  background: #000;
+  font: 400 13px/40px Sans-Serif;
+  color: #FFF;
+  padding: 0px 10px;
+  z-index: 10;
 }

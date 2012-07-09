@@ -23,12 +23,12 @@
       var headingLines;
       headingLines = this.$('h2').height() / 20;
       _.each(this.$('.line'), function(el, index) {
-        if (index > (13 - headingLines)) {
+        if (index > (14 - headingLines)) {
           $(el).remove();
         }
       });
       this.$('.line:last').css({
-        width: '30%'
+        width: "" + (30 + Math.round(Math.random() * 50)) + "%"
       });
     },
     template: _.template("<div class=\"content\">\n  <h2><a href=\"<%= data.link %>\"><%= data.title %></a></h2>\n  <div class=\"lines-illustration\">\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n    <div class=\"line\"></div>\n  </div>\n</div>")
