@@ -18,7 +18,7 @@
       this.$el.html(this.template(this.model.toJSON()));
       this.$el.append(jb.Templates.favicon(this.model.toJSON()));
     },
-    template: _.template("<div class=\"content\" style=\"background-image:url('http://farm<%= data.farm %>.static.flickr.com/<%= data.server %>/<%= data.id %>_<%= data.secret %>_z.jpg');\">\n\n</div>")
+    template: _.template("<div class=\"content\" style=\"background-image:url('http://farm<%= data.farm %>.static.flickr.com/<%= data.server %>/<%= data.id %>_<%= data.secret %>_z.jpg');\">\n  <a href=\"http://www.flickr.com/photo.gne?id=<%= data.id %>\" class=\"link\"></a>\n</div>")
   });
 
 }).call(this);

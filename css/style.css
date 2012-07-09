@@ -299,6 +299,15 @@ section#activity > .items {
   background-position: center center;
   background-size: contain;
 }
+.block.flickr > .content a {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  display: block;
+  text-decoration: none;
+}
 .block.pinboard > .content {
   left: 20px;
   top: 20px;

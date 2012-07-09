@@ -17,6 +17,6 @@ jb.Views.flickr = Backbone.View.extend
 
   template: _.template """
   <div class="content" style="background-image:url('http://farm<%= data.farm %>.static.flickr.com/<%= data.server %>/<%= data.id %>_<%= data.secret %>_z.jpg');">
-
+    <a href="http://www.flickr.com/photo.gne?id=<%= data.id %>" class="link"></a>
   </div>
   """
