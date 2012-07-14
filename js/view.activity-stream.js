@@ -48,7 +48,7 @@
       _.bindAll(this);
       this.$el = $(this.el);
       this.servicesLoaded = 0;
-      this.data = new Backbone.Collection();
+      this.data = new jb.Collections.Items();
       this.data.comparator = this.sortByDate;
       this.renderedIDs = [];
       this.$container = this.$('.items');

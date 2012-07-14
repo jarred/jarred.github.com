@@ -49,7 +49,8 @@ jb.Views.ActivityStream = Backbone.View.extend
     _.bindAll @
     @$el = $(@el)
     @servicesLoaded = 0
-    @data = new Backbone.Collection()
+    # @data = new Backbone.Collection()
+    @data = new jb.Collections.Items()
     @data.comparator = @sortByDate
     @renderedIDs = []
 

@@ -16,6 +16,7 @@ jb.Main =
         "js/templates"
       ], () =>
         require [
+          "js/collection.items"
           "js/view.twitter"
           "js/view.tumblr"
           "js/view.github"
