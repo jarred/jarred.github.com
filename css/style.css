@@ -2,7 +2,7 @@
   display: none;
 }
 html {
-  background-color: #f4f4f4;
+  background: #f4f4f4 url('/images/grid.png') repeat top left;
 }
 .wf-loading #preloader {
   background-color: #f4f4f4;
@@ -15,9 +15,11 @@ html {
 }
 #blocks .block {
   position: relative;
+  float: left;
 }
 #blocks .block .bg,
-#blocks .block .photo {
+#blocks .block .photo,
+#blocks .block .image {
   position: absolute;
   z-index: 1;
   top: 10px;
@@ -92,10 +94,14 @@ html {
 .block.heading .bg h3 {
   color: #ffffff;
   position: absolute;
-  left: 20px;
-  bottom: 20px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
   margin: 0px;
-  font: 700 24px/26px "pragmatica-web", 'Helvetica Neue', Sans-Serif;
+  font: 600 22px/1em "pragmatica-web", 'Helvetica Neue', Sans-Serif;
+  padding: 1em;
+  /*letter-spacing: 0.1em;*/
+
 }
 .block.detail {
   font: 400 60px/80px "pragmatica-web", 'Helvetica Neue', Sans-Serif;
@@ -106,4 +112,12 @@ html {
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
+}
+.detail {
+  background-color: #FFF;
+}
+.detail .image {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top center;
 }

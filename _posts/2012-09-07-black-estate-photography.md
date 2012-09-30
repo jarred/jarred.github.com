@@ -17,5 +17,11 @@ photos: [{
 }, {
 	src: '/images/blacks/5.jpg',
 	type: 'landscape'	
+}, {
+	src: '/images/blacks/6.jpg',
+	type: 'landscape'	
+}, {
+	src: '/images/blacks/7.jpg',
+	type: 'portrait'	
 }]
 ---

@@ -9,7 +9,7 @@
 }
 
 html{
-	background-color: #f4f4f4;
+	background: #f4f4f4 url('/images/grid.png') repeat top left;
 }
 
 .wf-loading{
@@ -27,8 +27,10 @@ html{
 #blocks{
 	.block{
 		position: relative;
+		float: left;
 		.bg, 
-		.photo{
+		.photo,
+		.image{
 			position: absolute;
 			z-index: 1;
 			top: 10px;
@@ -74,10 +76,13 @@ html{
 		h3{
 			color: @white;
 			position: absolute;
-			left: 20px;
-			bottom: 20px;
+			left: 0px;
+			bottom: 0px;
+			right: 0px;
 			margin: 0px;
-			font: 700 24px/26px @sans;
+			font: 600 22px/1em @sans;
+			padding: 1em;
+			/*letter-spacing: 0.1em;*/
 		}
 	}
 }
@@ -92,4 +97,13 @@ html{
 	background-size: cover;
 	background-position: center center;
 	background-repeat: no-repeat;
+}
+
+.detail{
+	background-color: #FFF;
+	.image{
+		background-size: contain;	
+		background-repeat: no-repeat;
+		background-position: top center;
+	}	
 }

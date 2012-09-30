@@ -1,0 +1,11 @@
+{% for photo in post.photos %}
+	{% if photo.type == 'landscape' %}
+		<div class="block b6wide b4high">
+			<div class="photo" style="background-image: url('{{ photo.src }}');"></div>
+		</div>
+	{% else %}
+		<div class="block b4wide b6high">
+			<div class="photo" style="background-image: url('{{ photo.src }}');"></div>
+		</div>
+	{% endif %}
+{% endfor %}

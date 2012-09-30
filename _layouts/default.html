@@ -29,17 +29,10 @@
 			{% for post in site.posts %}
 				<a href="{{ post.url }}" class="block b3wide b3high heading"><div class="bg"><h3>{{ post.title | replace: ' ', '<br />' }}</h3></div></a>
 				{% if type == photography %}
-					{% for photo in post.photos %}
-						{% if photo.type == 'landscape' %}
-							<div class="block b6wide b4high">
-								<div class="photo" style="background-image: url('{{ photo.src }}');"></div>
-							</div>
-						{% else %}
-							<div class="block b4wide b6high">
-								<div class="photo" style="background-image: url('{{ photo.src }}');"></div>
-							</div>
-						{% endif %}
-					{% endfor %}
+					{% include photography.html %}
+				{% endif %}
+				{% if type == website %}
+					{% include website.html %}
 				{% endif %}
 			{% endfor %}
 		</div>
