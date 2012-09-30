@@ -1,6 +1,33 @@
+.hide {
+  display: none;
+}
+html {
+  background-color: #f4f4f4;
+}
+.wf-loading #preloader {
+  background-color: #f4f4f4;
+  position: fixed;
+  z-index: 999;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+}
 #blocks .block {
-  float: left;
   position: relative;
+}
+#blocks .block .bg,
+#blocks .block .photo {
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  right: 0px;
+  bottom: 0px;
+  left: 10px;
+}
+#blocks a.block {
+  text-decoration: none;
+  color: #212232;
 }
 #blocks .b1high {
   height: 80px;
@@ -17,23 +44,66 @@
 #blocks .b5high {
   height: 400px;
 }
-#blocks .b1high {
+#blocks .b6high {
+  height: 480px;
+}
+#blocks .b7high {
+  height: 560px;
+}
+#blocks .b8high {
+  height: 640px;
+}
+#blocks .b1wide {
   width: 80px;
 }
-#blocks .b2high {
+#blocks .b2wide {
   width: 160px;
 }
-#blocks .b3high {
+#blocks .b3wide {
   width: 240px;
 }
-#blocks .b4high {
+#blocks .b4wide {
   width: 320px;
 }
-#blocks .b5high {
+#blocks .b5wide {
   width: 400px;
+}
+#blocks .b6wide {
+  width: 480px;
+}
+#blocks .b7wide {
+  width: 560px;
+}
+#blocks .b8wide {
+  width: 640px;
 }
 #hi {
   background-color: #FFF;
-  font: 700 200px/240px 'Helvetica Neue', Sans-Serif;
+  text-align: center;
+  font: 700 200px/240px "pragmatica-web", 'Helvetica Neue', Sans-Serif;
   color: #fc6862;
+}
+.block.heading {
+  color: #ffffff;
+}
+.block.heading .bg {
+  background-color: #212232;
+}
+.block.heading .bg h3 {
+  color: #ffffff;
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  margin: 0px;
+  font: 700 20px/20px "pragmatica-web", 'Helvetica Neue', Sans-Serif;
+}
+.block.detail {
+  font: 400 60px/80px "pragmatica-web", 'Helvetica Neue', Sans-Serif;
+  text-align: center;
+  color: #CCC;
+}
+.photo {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
