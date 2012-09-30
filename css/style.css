@@ -1,0 +1,39 @@
+#blocks .block {
+  float: left;
+  position: relative;
+}
+#blocks .b1high {
+  height: 80px;
+}
+#blocks .b2high {
+  height: 160px;
+}
+#blocks .b3high {
+  height: 240px;
+}
+#blocks .b4high {
+  height: 320px;
+}
+#blocks .b5high {
+  height: 400px;
+}
+#blocks .b1high {
+  width: 80px;
+}
+#blocks .b2high {
+  width: 160px;
+}
+#blocks .b3high {
+  width: 240px;
+}
+#blocks .b4high {
+  width: 320px;
+}
+#blocks .b5high {
+  width: 400px;
+}
+#hi {
+  background-color: #FFF;
+  font: 700 200px/240px 'Helvetica Neue', Sans-Serif;
+  color: #fc6862;
+}
