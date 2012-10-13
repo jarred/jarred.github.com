@@ -1,7 +1,0 @@
-{% for image in post.images %}
-	{% if image.type == 'detail' %}
-		<div class="block b5high b5wide detail">
-			<div class="image" style="background-image: url('{{ image.src }}');"></div>
-		</div>
-	{% endif %}
-{% endfor %}
