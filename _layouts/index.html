@@ -10,8 +10,10 @@
     <body>
     	{% include nav.html %}
 		<div id="posts">
+            <h4>Recent Activity:</h4>      
 			{% for post in site.posts %}
-				<div class="post">
+				<div class="post extend" data-view="Post">
+                    <!-- <h5 class="date">{{ post.date }}</h5> -->
 					{{ post.content }}
 				</div>				
 			{% endfor %}

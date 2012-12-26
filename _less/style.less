@@ -1,8 +1,9 @@
-@margin: 40px;
-@sans: 'Helvetica Neue', Sans-Serif;
+@margin: 20px;
+@sans: 'Calibre', 'Helvetica Neue', Sans-Serif;
+@serif: Georgia;
 
 html{
-	font: 400 14px/17px @sans;
+	font: 400 16px/20px @sans;
 }
 
 a{
@@ -13,6 +14,16 @@ a{
 		border-bottom-color: transparent;
 		color: rgba(0, 0, 0, 0);
 	}
+}
+
+.window-size{
+	position: fixed;
+	top: 0px;
+	right: 16px;
+	background-color: #000;
+	color: #FFF;
+	padding: 3px 5px 0px;
+	font: 500 14px/20px @sans;
 }
 
 #welcome{
@@ -33,6 +44,22 @@ a{
 			text-decoration: none;
 			color: inherit;
 		}
+	}
+}
+
+#posts{
+	position: relative;
+	margin-left: 256px;
+
+	/* common float stuff */
+
+	h2,
+	h3,
+	blockquote,
+	.image{
+		float: left;
+		margin-left: 20px;
+		margin-top: 20px;
 	}
 }
 
@@ -62,89 +89,109 @@ a{
 	}
 }
 
-.meta{
-	width: 	200px !important;
-	float: left;
-	margin-right: @margin;
-	strong{
-		font-weight: 400;
-		color: #AAA;
+h1{
+	font: 500 60px/58px @sans;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	display: block;
+	margin: 20px 0px 0px 20px;
+	.word1,
+	.word2,
+	.word3,
+	.word4,
+	.word5,
+	.word6,
+	.word7,
+	.word8{
+		display: block;
 	}
-}
-
-#posts{
-	position: relative;
-	left: 0px;
-	right: 0px;
-	top: @margin;
-	p, h1{
-		position: relative;
-		left: 50%;
-		width: 500px;
-		margin-bottom: 20px;
+	.word1{
+		border-top: 5px solid #000;
+		display: inline-block;
+		padding-top: 20px;
 	}
-	h1{
-		font: 700 60px/52px @sans;
-		letter-spacing: -2px;
+	span:last-child{
+		border-bottom: 5px solid #000;
+		display: inline-block;
+		padding-bottom: 0px;
 	}
 }
 
 .post{
 	clear: both;
-	margin-bottom: 600px;
+	margin-bottom: 400px !important;
 }
 
-strong, b{
-	font-weight: 600;
-}
-
-h1{
-	margin-bottom: @margin !important;
-}
-
-.photoset{
-	width: 1000px;
-	height: 600px;
-	background-color: #eee;
-	clear: both;
-	position: relative;
-	left: 50%;
-	margin: @margin auto @margin -500px;
-	overflow: hidden;
+.image{
+	width: 354px;
+	&.big{
+		width: 728px;
+	}
 	img{
-		width: 1000px;
+		max-width: 100%;
 	}
 }
 
-@media screen and (max-width: 1024px){
-	#card{
-		position: relative;
-		float: left;
-		left: auto;
-		top: auto;
-		bottom: auto;
-		float: left;
+blockquote{
+	max-width: 296px;
+	font: 400 19px/20px @sans;
+	padding: 20px 60px 0px 0px;
+	em{
+		color: #AAA;
 	}
-	#fellows{
-		position: relative;
-		left: auto;
-		top: auto;
-		bottom: auto;
-		float: left;
-		left: 50%;
-		margin-left: -@margin * 2;
-	}
+}
+h4{
+	color: #AAA;
+	margin: 20px;
+	text-transform: uppercase;
+}
+
+.footnotes{
+	clear: both;
+	width: 354px;
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+@media screen and (max-width: 960px){
 	#welcome{
 		clear: both;
-		margin: @margin;
-	}
-	#posts{
-		p, h1{
-			left: auto;
+		display: block;
+		.fix{
+			clear: left;
 		}
 	}
-	.post{
-		margin: @margin;
-		margin-bottom: 300px;
+	#card{
+		position: relative !important;
+		float: left;
+		width: 384px;
+	}
+	#fellows{
+		position: relative !important;
+		bottom: auto;
+		left: auto;
+		top: 20px;
+		right: auto;
+		float: left;
+	}
+	#posts{
+		margin-left: 0px;
+		clear: both;
+		margin-top: 40px;
+	}
+}
+
+@media screen and (max-width: 767px){
+	#fellows{
+		float: none;
+		clear: both;
+		left: 20px;
+		margin: 20px 0px;
+	}
+	.image{
+		max-width: 100%;
+	}
+	h1{
+		font: 500 30px/28px @sans;		
 	}
 }

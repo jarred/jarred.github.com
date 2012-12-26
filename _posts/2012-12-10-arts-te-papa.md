@@ -2,11 +2,12 @@
 layout: post-photoset
 title: Black Estate Photography
 collaborators: [Sons & Co, Black Estate]
+published: false
 ---
 
 # Arts Te Papa
 
-I spent 24 hours at the Black Estate Vineyard
+Te Papa enlisted [Springloads](#) help
 
 __Springload__  
 [springload.co.nz](http://www.springload.co.nz)
