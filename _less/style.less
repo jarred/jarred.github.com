@@ -1,9 +1,14 @@
 @margin: 20px;
-@sans: 'Calibre', 'Helvetica Neue', Sans-Serif;
+@sans: 'Helvetica Neue', Sans-Serif;
 @serif: Georgia;
 
 html{
-	font: 400 16px/20px @sans;
+	font: 400 13px/20px @sans;
+	overflow-x: hidden;
+}
+
+.clearfix{
+	clear: both;
 }
 
 a{
@@ -50,16 +55,27 @@ a{
 #posts{
 	position: relative;
 	margin-left: 256px;
+	top: 20px;
+	left: 20px;
 
 	/* common float stuff */
-
-	h2,
-	h3,
-	blockquote,
-	.image{
-		float: left;
-		margin-left: 20px;
-		margin-top: 20px;
+	.post{
+		h1,
+		h2,
+		h3,
+		blockquote,
+		.image{
+			float: left;
+			margin-right: 20px;
+			margin-bottom: 20px;
+		}
+		> p{
+			width: 354px;
+			line-height: 17px;
+			float: left;
+			margin-right: 20px;
+			margin-bottom: 20px;
+		}
 	}
 }
 
@@ -90,11 +106,10 @@ a{
 }
 
 h1{
-	font: 500 60px/58px @sans;
-	text-transform: uppercase;
-	letter-spacing: 3px;
-	display: block;
-	margin: 20px 0px 0px 20px;
+	font: 600 40px/38px @sans;
+	letter-spacing: -1px;
+	float: left;
+	min-width: 354px;
 	.word1,
 	.word2,
 	.word3,
@@ -105,15 +120,12 @@ h1{
 	.word8{
 		display: block;
 	}
-	.word1{
-		border-top: 5px solid #000;
-		display: inline-block;
-		padding-top: 20px;
+	@edge: 40px;
+	.word2{
+		margin-left: @edge;
 	}
-	span:last-child{
-		border-bottom: 5px solid #000;
-		display: inline-block;
-		padding-bottom: 0px;
+	.word3{
+		margin-left: @edge * 2;
 	}
 }
 
@@ -133,17 +145,32 @@ h1{
 }
 
 blockquote{
-	max-width: 296px;
-	font: 400 19px/20px @sans;
-	padding: 20px 60px 0px 0px;
+	max-width: 324px;
+	font: 400 18px/22px @sans;
+	padding: 0px 30px 20px 0px;
 	em{
 		color: #AAA;
+		font-style: none;
+		display: block;
+		text-align: right;
+		/* font-family: @sans; */
+		/* font-size: 0.9em; */
+		a{
+			color: #AAA;
+			border-color: #AAA;
+		}
 	}
 }
+
 h4{
-	color: #AAA;
+	color: #FFF;
 	margin: 20px;
 	text-transform: uppercase;
+	letter-spacing: 1px;
+	font: 500 11px/24px @sans;
+	display: inline-block;
+	background-color: #000;
+	padding: 0px 6px;
 }
 
 .footnotes{
@@ -183,15 +210,9 @@ h4{
 
 @media screen and (max-width: 767px){
 	#fellows{
-		float: none;
-		clear: both;
-		left: 20px;
-		margin: 20px 0px;
+		display: none;
 	}
 	.image{
 		max-width: 100%;
-	}
-	h1{
-		font: 500 30px/28px @sans;		
 	}
 }

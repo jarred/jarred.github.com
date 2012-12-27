@@ -1,18 +1,13 @@
 ---
 layout: post-photoset
 title: Black Estate Photography
-collaborators: [Sons & Co, Black Estate]
 ---
 
 # Black Estate Photography
 
-<div class="image">
-	<img src="/images/black-estate/2.jpg" />
-</div>
-
 > Hey Jarred,  
 > Tim and I were wondering if you're interested in a photography assignment in Waipara. ... They're up for doing good work, it's a beautiful location and they're just putting the finishing touches on a RTA designed 'barn'. It'll be hard to mess up.  
-> _Matt — Sons & Co_
+> _Matt — [Sons & Co](http://www.sons.co.nz)_
 
 <div class="image big">
 	<img src="/images/black-estate/8.jpg" />
@@ -25,6 +20,8 @@ collaborators: [Sons & Co, Black Estate]
 <div class="image">
 	<img src="/images/black-estate/4.jpg" />
 </div>
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi luctus faucibus nunc, in posuere diam porta in. Proin a tempor erat. Phasellus tincidunt, neque ut varius rutrum, purus metus sodales erat, ut elementum nulla odio sed neque. Donec feugiat ornare metus gravida auctor.
 
 <div class="image big">
 	<img src="/images/black-estate/5.jpg" />
