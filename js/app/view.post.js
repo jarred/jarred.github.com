@@ -7,8 +7,17 @@
   jb.Views || (jb.Views = {});
 
   jb.Views.Post = Backbone.View.extend({
+    events: {
+      'transition-in': 'transitionIn'
+    },
     initialize: function(options) {
       this.options = options;
+      _.bindAll(this);
+      this.model = new Backbone.Model(JSON.parse(this.$('.post-data').html()));
+    },
+    transitionIn: function(e) {
+      console.log('transitionIn');
+      $('#jarred-is .what').text(this.model.get('jarred-is'));
     }
   });
 

@@ -1,224 +1,88 @@
 html {
-  font: 400 13px/20px 'Helvetica Neue', Sans-Serif;
-  overflow-x: hidden;
+  font: 400 19px/22px 'Helvetica Neue', Sans-Serif;
   color: #222222;
 }
 .clearfix {
   clear: both;
 }
-.window-size {
-  position: fixed;
-  top: 0px;
-  right: 16px;
-  background-color: #000;
-  color: #FFF;
-  padding: 3px 5px 0px;
-  font: 500 14px/20px 'Helvetica Neue', Sans-Serif;
+.hide {
+  display: none;
 }
-#welcome {
-  color: #ffffff;
+@media screen and (max-width: 960px) {
+  
+}
+#jarred-is {
   position: fixed;
+  z-index: 100;
+  left: 134px;
+  top: 94px;
+  font-weight: 600;
+  color: #FFF;
+}
+#jarred-is span {
+  background-color: #FFF;
+  display: inline-block;
+  padding: 8px;
+  color: #222222;
+}
+#posts {
+  position: fixed;
+  left: 22px;
+  top: 22px;
+  bottom: 22px;
+  right: 220px;
+  overflow: visible;
+  z-index: 10;
+  max-width: 1000px;
+  max-height: 1000px;
+}
+#posts #nav {
+  position: absolute;
+  width: 200px;
+  right: -220px;
+  bottom: 22px;
+}
+.post {
+  position: absolute;
   left: 0px;
   top: 0px;
   bottom: 0px;
-  background-color: #222222;
-  width: 256px;
+  right: 0px;
 }
-#welcome h3 {
-  margin-bottom: 20px;
-}
-#welcome a {
-  color: #ffffff;
-  text-decoration: none;
-}
-#card {
+.post .bg-image {
+  background-color: #000;
   position: absolute;
-  left: 20px;
-  top: 20px;
-  font-weight: 400;
-  z-index: 100;
-  color: #ffffff;
-}
-#card h3 {
-  font-weight: 400;
-}
-#posts {
-  position: relative;
-  margin-left: 256px;
-  top: 20px;
-  left: 0px;
-  /* common float stuff */
-
-}
-#posts .post h1,
-#posts .post h2,
-#posts .post h3,
-#posts .post > p,
-#posts .post blockquote,
-#posts .post .image {
-  float: left;
-  margin-left: 20px;
-  margin-bottom: 20px;
-}
-#posts .post > p {
-  width: 354px;
-  line-height: 17px;
-  margin-top: -4px;
-}
-#fellows {
-  position: absolute;
-  left: 20px;
-  bottom: 20px;
-}
-#fellows h3 {
-  font-weight: 400;
-}
-#preloader {
-  position: fixed;
   left: 0px;
   top: 0px;
   right: 0px;
   bottom: 0px;
-  z-index: 500;
-  background-color: #FFF;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  max-width: 1000px;
+  max-height: 1000px;
 }
-html.wf-active #preloader,
-html.wf-inactive #preloader {
-  display: none;
+.post p {
+  position: absolute;
+  x-index: 20;
+  left: 134px;
+  bottom: 22px;
+  color: #FFF;
 }
-h1 {
-  font: 600 40px/40px 'Helvetica Neue', Sans-Serif;
-  letter-spacing: -1px;
-  float: left;
-  min-width: 354px;
+.post p a {
+  color: #FFF;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
-h1 .word1,
-h1 .word2,
-h1 .word3,
-h1 .word4,
-h1 .word5,
-h1 .word6,
-h1 .word7,
-h1 .word8 {
-  display: block;
+.post p span.faint {
+  color: rgba(255, 255, 255, 0.4);
 }
-h1 .word2 {
-  margin-left: 40px;
+#depth-instrument {
+  position: relative;
 }
-h1 .word3 {
-  margin-left: 80px;
+#depth-instrument .level {
+  height: 400px;
 }
-h1 .word4 {
-  margin-left: 120px;
-}
-h1 .word5 {
-  margin-left: 160px;
-}
-h1 .word6 {
-  margin-left: 200px;
-}
-h1 .word7 {
-  margin-left: 240px;
-}
-.post {
-  clear: both;
-  margin-bottom: 200px;
-}
-.image {
-  width: 354px;
-}
-.image.big {
-  width: 728px;
-}
-.image img {
-  max-width: 100%;
-}
-blockquote {
-  max-width: 324px;
-  font: 400 18px/22px 'Helvetica Neue', Sans-Serif;
-  padding: 0px 30px 0px 0px;
-}
-blockquote em {
-  color: #AAA;
-  font-style: none;
-  display: block;
-  text-align: right;
-  /* font-family: @sans; */
-
-  /* font-size: 0.9em; */
-
-}
-blockquote em a {
-  color: #AAA;
-  border-color: #AAA;
-}
-.footnotes {
-  clear: both;
-  width: 354px;
-  margin-left: 20px;
-  margin-top: 20px;
-}
-@media screen and (max-width: 960px) {
-  #welcome {
-    clear: both;
-    display: block;
-    padding-bottom: 80px;
-    position: relative;
-    left: auto;
-    right: auto;
-    bottom: auto;
-    width: auto;
-  }
-  #welcome .fix {
-    clear: left;
-  }
-  #card {
-    position: relative !important;
-    float: left;
-    width: 394px;
-  }
-  #fellows {
-    position: relative !important;
-    bottom: auto;
-    left: auto;
-    top: 20px;
-    right: auto;
-    float: left;
-  }
-  #posts {
-    margin-left: 0px;
-    clear: both;
-    margin-top: 40px;
-  }
-}
-@media screen and (max-width: 767px) {
-  #fellows {
-    display: none;
-  }
-  .image {
-    max-width: 100%;
-  }
-  #posts {
-    margin-right: 20px;
-  }
-  h1 {
-    font: 600 30px/30px 'Helvetica Neue', Sans-Serif;
-    letter-spacing: 0px;
-  }
-  blockquote {
-    font: 400 16px/19px 'Helvetica Neue', Sans-Serif;
-  }
-  .post {
-    margin-bottom: 100px;
-  }
-  .post h1,
-  .post h2,
-  .post h3,
-  .post > p,
-  .post blockquote,
-  .post .image {
-    float: none;
-    width: auto !important;
-    min-width: auto;
-  }
+#homepage .bg-image {
+  background-image: url('../images/homepage/8208478127_7cfe54eb50_h.jpeg');
 }

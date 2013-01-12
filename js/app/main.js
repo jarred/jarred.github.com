@@ -8,7 +8,58 @@
 
   jb.Main = {
     init: function() {
-      $('.post h1').lettering('words');
+      _.bindAll(this);
+      this.appModel = new Backbone.Model(JSON.parse($('#init-data').html()));
+      console.log(this.appModel.toJSON());
+      $('body').css({
+        paddingBottom: "" + ($(window).height()) + "px"
+      });
+      this.extendViews();
+      this.showPost(0);
+      $(window).bind('scroll', this.onScroll);
+    },
+    onScroll: function(e) {
+      var x, y;
+      y = $(window).scrollTop();
+      x = jb.Utils.restrictNumber(Math.floor(y / 400), 0, this.appModel.get('total_posts'));
+      if (this.currentPostIndex !== x) {
+        this.showPost(x);
+      }
+    },
+    showPost: function(x) {
+      var _this = this;
+      this.currentPostIndex = x;
+      console.log('showPost', arguments);
+      _.each($('.post'), function(el, index) {
+        var $el;
+        $el = $(el);
+        if (index === _this.currentPostIndex) {
+          $el.removeClass('hide');
+          $el.trigger('transition-in');
+        } else {
+          $el.addClass('hide');
+          $el.trigger('transition-out');
+        }
+      });
+    },
+    extendViews: function() {
+      var _this = this;
+      _.each($('.extend'), function(el) {
+        var $el, name, view;
+        $el = $(el);
+        name = $el.data('view');
+        if (name === null || name === '') {
+          return;
+        }
+        if (jb.Views[name] === void 0) {
+          return;
+        }
+        view = new jb.Views[name]({
+          el: $el,
+          appModel: jb.Main.appModel
+        });
+        $el.removeClass('extend');
+      });
     }
   };
 

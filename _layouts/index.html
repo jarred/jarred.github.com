@@ -3,22 +3,50 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Jarred Bishop — Designer — Wellington, NZ</title>
-        <meta name="description" content="">
+        <title>Jarred is...</title>
         {% include head.html %}
     </head>
     <body>
-    	{% include nav.html %}
+        <p id="jarred-is">Jarred is <span class="what">loading files and stuff...</span></p>
+        <div id="depth-instrument">
+            <div class="level homepage"></div>
+            {% for post in site.posts %}
+            <div class="level"></div>
+            {% endfor %}
+        </div>
 		<div id="posts">
+          <ul id="nav">
+              <li><a href="#">Profile</a></li>
+              <li><a href="#">Contact</a></li>
+          </ul>
+      
+            <div class="post extend hide" id="homepage" data-view="Post">
+                <script type="application/json" class="post-data">
+                {
+                    "jarred-is": "happy to see you"
+                }
+                </script>            
+                <div class="bg-image"></div>
+                <p>This is his portfolio. <span class="faint">Scroll, swipe or use your arrow keys. It’s all the same to me.</span></p>
+            </div>      
 			{% for post in site.posts %}
-				<div class="post extend" data-view="Post">
-                    <!-- <h5 class="date">{{ post.date }}</h5> -->
-					{{ post.content }}
-                    <div class="clearfix"></div>                           
+				<div class="post extend hide" data-view="Post">
+                    <script type="application/json" class="post-data">
+                    {
+                        "jarred-is": "{{ post.jarred-is }}"
+                    }
+                    </script>            
+                    {{ post.content }}
 				</div>				
                 
 			{% endfor %}
 		</div>
+        <script type="applications/json" id="init-data">
+            {
+                "total_posts": {{ site.posts | size }},
+                "posts": []
+            }
+        </script>      
 		{% include js.html %}
     </body>
 </html>
